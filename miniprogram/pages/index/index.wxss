@@ -1,0 +1,38 @@
+/* 设置页面背景颜色 */
+page {
+  background-color: #f7f7f7;
+}
+/* 设置轮播图 圆角 */
+.slide-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.6rem;
+  /* border-bottom-right-radius:1rem;
+  border-bottom-left-radius:1rem; */
+}
+/* 设置卡片列表 下边距 */
+.card{
+  margin-bottom:0.6rem!important; 
+}
+/* 设置卡片内容区字体样式 */
+.avter-content{
+  font-size: 0.8rem;
+}
+/* 设置tag标签居上显示 */
+l-tag{
+align-self:flex-start;
+}
+/* 设置卡片右下角 原点赞按钮区域样式 */
+.like-container 
+{
+  display: flex;
+  justify-content:flex-end;
+}
+.like-container view,
+.like-container l-icon
+{
+  margin: 0 0.1rem;
+}
+.number{
+  font-size: 0.7rem;
+}

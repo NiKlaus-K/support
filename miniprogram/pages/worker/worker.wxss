@@ -1,0 +1,209 @@
+/* pages/worker/worker.wxss */
+
+.container {
+    display: flex;
+    /* 设置水平排列，起点在左 */
+    flex-direction: row;
+    /* 水平居中 */
+    justify-content: center;
+    /* 换行 */
+    flex-wrap: wrap;
+}
+
+.flex {
+    display: flex;
+}
+
+.worker-container {
+    display: flex;
+    /* 设置水平排列，起点在左 */
+    flex-direction: row;
+    /* 水平居中 */
+    justify-content: center;
+    /* 不换行 */
+    flex-wrap: nowrap;
+    width: 92%;
+    margin: 12px 0px;
+    padding: 0 10px;
+}
+
+
+/* 左上角照片区域 */
+
+.worker-photo {
+    width: 400rpx;
+    height: 340rpx;
+}
+
+
+/* 工作人员姓名、电话区域 */
+
+.worker-info {
+    padding-left: 15px;
+}
+
+.worker-name {
+    margin-top: 10px;
+    font-size: 16pt;
+    display: block;
+}
+
+.worker-mobile {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 11pt;
+    color: #888;
+    display: block;
+}
+
+.worker-area {
+  margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 11pt;
+    color: #888;
+    display: block;
+}
+
+
+/* 工作人员描述卡片信息区域 */
+
+.worker-card {
+    font-size: 12pt !important;
+    background-color: #f4f5f7 !important;
+    border-radius: 1rem !important;
+    margin-bottom: 10px !important;
+}
+
+
+/* 评论区 */
+
+.worker-comment {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* 设置打分、评论按钮区域 */
+
+.worker-comment .flex {
+    /* 设置flex布局两端对齐 */
+    justify-content: space-between;
+    width: 92%;
+    margin-top: 10px;
+}
+
+.worker-comment .flex l-rate {
+    /* flex布局下 项目item左对齐 */
+    align-self: flex-start !important;
+}
+
+.worker-comment .flex l-button {
+    /* flex布局下 项目item右对齐 */
+    align-self: flex-end !important;
+}
+
+
+/* 评论区  副标题 */
+
+h2 {
+    font-size: 14pt;
+    width: 92%;
+    left: 0px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+
+/* 分割线 */
+
+.divLine {
+    margin: 0;
+    background: #e4e4e4;
+    width: 100%;
+    height: 3rpx;
+}
+
+
+/* 评论列表区域 */
+
+.comment-list {
+    width: 92%;
+    display: flex;
+    /* 主轴 水平 */
+    flex-direction: row;
+    /* 主轴 居左 */
+    justify-content: flex-start;
+    /* 交叉轴 垂直居中 */
+    align-items: center;
+    /* 换行 */
+    flex-wrap: wrap;
+    padding: 5px 2px;
+    margin: 5px 0 0;
+}
+
+.comment-name {
+    font-size: 12pt;
+    color: #355eb6;
+    margin-left: 10px;
+}
+
+
+/* 评论列表 右上角按钮区 */
+
+.comment-list-btn {
+    /* ☆☆☆☆☆☆设置右上角 按钮项   居右显示 */
+    margin-left: auto;
+}
+
+.comment-list-btn view {
+    font-size: 10pt;
+    color: #888;
+    display: inline !important;
+    margin: 0 2px;
+}
+
+
+/* 评论内容 */
+
+.comment-content {
+    font-size: 11pt;
+    color: #343434;
+    padding: 0px 5px;
+}
+
+
+/* 评论时间 */
+
+.comment-time {
+    font-size: 10pt;
+    color: #888;
+    margin: 0px 5px 2px;
+}
+
+
+/* 评论回复区域 */
+
+.reply {
+    background-color: #eaeaec;
+    width: 88%;
+    /* 居右显示 */
+    margin-left: auto;
+    margin-bottom: 8px;
+    padding: 4px;
+    border-radius: 6px;
+    line-height: 1.2rem;
+}
+
+.reply-name {
+    font-size: 10pt;
+    color: #355eb6;
+}
+
+.reply-content {
+    margin-bottom: 5px;
+    font-size: 10pt;
+    color: #888;
+}

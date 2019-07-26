@@ -1,0 +1,18 @@
+/**app.wxss**/
+@import '/style/weui.wxss';
+@import '/images/icons/iconfont.wxss';
+@import '/style/dist/step/index.wxss';
+/* {
+        "index": 1,
+        "pagePath": "pages/product/product",
+        "iconPath": "images/icons/product.png",
+        "selectedIconPath": "images/icons/product-active.png",
+        "text": "产品"
+      },
+      {
+        "index": 2,
+        "pagePath": "pages/orders/orders",
+        "iconPath": "images/icons/order.png",
+        "selectedIconPath": "images/icons/order-active.png",
+        "text": "预约"
+      }, */

@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+     "l-rate": "../../../style/dist/rate/index"
+  }
+}

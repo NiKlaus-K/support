@@ -1,0 +1,6 @@
+<!--pages/product/product.wxml-->
+  <l-segment bind:linchange="changeTabs" placement="left" animated="true" >
+        <l-segment-item tab="客厅" key="one" />
+        <l-segment-item tab="卧室" key="two" />
+        <l-segment-item tab="厨房" key="three" />
+    </l-segment> 
