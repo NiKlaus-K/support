@@ -10,16 +10,21 @@
     </view>
   </view>
   <!-- 简介 卡片 -->
-  <l-card l-class="worker-card" type="primary" plaintext="true">
-    <view class="content worker-introduce">{{ worker.introduce }}</view>
-  </l-card>
+
+  <view class="content worker-introduce">{{ worker.introduce }}</view>
+
   <!-- 提交评论 -->
   <view class="worker-comment">
-    <l-textarea l-class="worker-comment-textarea" placeholder="点击评价..." auto-height="{{true}}" border="{{true}}" indicator="{{false}}" />
-    <view class="flex">
-      <l-rate size="38" />
-      <l-button shape="semicircle" size="mini">评价</l-button>
-    </view>
+    <form bindsubmit="commentSubmit" >
+      <l-textarea l-class="worker-comment-textarea" placeholder="点击评价..." auto-height="{{true}}" border="{{true}}" indicator="{{true}}" name="commentContent" value=""/>
+      <view class="flex">
+        <l-rate size="38" bind:linChange="changeScore"/>
+        <input type="number" hidden="true" name="score" value="{{score}}"/>
+        <view class="comment-submit">
+          <button size="mini" form-type="submit">评价</button>
+        </view>
+      </view>
+    </form>
     <h2>全部评论</h2>
     <!-- 分割线 -->
     <view class="divLine"></view>

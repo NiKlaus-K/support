@@ -17,20 +17,26 @@ page {
 /* 设置卡片内容区字体样式 */
 .avter-content{
   font-size: 0.8rem;
+  /* 设置超过两行后隐藏 ——开始*/
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  /* 设置超过两行后隐藏 ——结束*/
 }
 /* 设置tag标签居上显示 */
 l-tag{
 align-self:flex-start;
 }
 /* 设置卡片右下角 原点赞按钮区域样式 */
-.like-container 
-{
+.like-container {
   display: flex;
   justify-content:flex-end;
+  margin-top: 8px;
 }
 .like-container view,
-.like-container l-icon
-{
+.like-container l-icon{
   margin: 0 0.1rem;
 }
 .number{

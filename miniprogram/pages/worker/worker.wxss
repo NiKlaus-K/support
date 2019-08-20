@@ -18,8 +18,8 @@
     display: flex;
     /* 设置水平排列，起点在左 */
     flex-direction: row;
-    /* 水平居中 */
-    justify-content: center;
+    /* 水平居左 */
+    justify-content: flex-start;
     /* 不换行 */
     flex-wrap: nowrap;
     width: 92%;
@@ -31,8 +31,10 @@
 /* 左上角照片区域 */
 
 .worker-photo {
-    width: 400rpx;
-    height: 340rpx;
+  border: 1px solid #e8f0f9;
+  width: 250rpx;
+  height: 350rpx;
+  border-radius: 0.3rem;
 }
 
 
@@ -49,29 +51,36 @@
 }
 
 .worker-mobile {
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     font-size: 11pt;
     color: #888;
     display: block;
 }
 
 .worker-area {
-  margin-top: 5px;
-    margin-bottom: 5px;
-    font-size: 11pt;
-    color: #888;
-    display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 11pt;
+  color: #888;
+  display: block;
 }
-
 
 /* 工作人员描述卡片信息区域 */
 
-.worker-card {
-    font-size: 12pt !important;
-    background-color: #f4f5f7 !important;
-    border-radius: 1rem !important;
-    margin-bottom: 10px !important;
+.worker-introduce {
+  width: 88%;
+  display: flex;
+    /* 设置水平排列，起点在左 */
+  flex-direction: row;
+  /* 水平居左 */
+  justify-content: flex-start;
+  margin: 0;
+  font-size: 11pt;
+  background-color: #f4f5f7;
+  border-radius: 0.3rem;
+  margin-bottom: 10px;
+  padding: 10px;
 }
 
 
@@ -91,7 +100,6 @@
 .worker-comment .flex {
     /* 设置flex布局两端对齐 */
     justify-content: space-between;
-    width: 92%;
     margin-top: 10px;
 }
 
@@ -100,11 +108,16 @@
     align-self: flex-start !important;
 }
 
-.worker-comment .flex l-button {
+.comment-submit{
     /* flex布局下 项目item右对齐 */
     align-self: flex-end !important;
 }
 
+.comment-submit button{
+  color: white;
+  background-color: #3963bc;
+    border-radius: 0.8rem;
+}
 
 /* 评论区  副标题 */
 

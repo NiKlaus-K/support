@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container">
   <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class="swiper-home">
-    <block wx:for="{{imgUrls}}">
+    <block wx:for="{{imgUrls}}" wx:key="{{imgUrls.id}}">
       <swiper-item>
         <image src="{{item}}" class="slide-image" width="355" height="100" />
       </swiper-item>
@@ -11,69 +11,27 @@
   <l-search-bar placeholder="搜索" show-cancel="{{false}}" shape="circle" />
 
   <!--开始------卡片列表 -->
-  <!-- 设置路由，打开worker页面  暂时使用 存在点击时padding区域也变色的问题-->
-  <navigator url="../worker/worker?title=worker" hover-class="navigator-hover">
-    <l-card type="avatar" l-class="card" image="{{ worker.photo }}" title="{{ worker.name }}" describe="区域：{{ worker.area }}">
-      <!-- 此处为content -->
-      <view class="avter-content">
-        {{ worker.introduce}}
-      </view>
-      <view class="avter-share-container">
-        <view class="like-container">
-          <l-icon name="comment" color="#666" size="28" />
-          <view class="number">{{ worker.comment_num }} 评论</view>
+  <view wx:for="{{worker}}" wx:key="id">
+    <!-- 设置路由，打开worker页面  暂时使用 存在点击时padding区域也变色的问题-->
+    <!-- hover-class="none"取消点击样式 -->
+    <view data-id="{{item._id}}" bindtap="click" >
+      <l-card type="avatar" l-class="card" image="{{ item.photo }}" title="{{ item.name }}" describe="区域：{{ item.area }}">
+        <!-- 此处为content -->
+        <view class="avter-content">
+          {{ item.introduce}}
         </view>
-      </view>
-      <l-tag shape="circle" bg-color="#f3f3f3" font-color="#3963BC" slot="more" size="large">
-        联系电话：{{ worker.mobile }}
-      </l-tag>
-    </l-card>
-  </navigator>
+        <view class="avter-share-container">
+          <view class="like-container">
+            <l-icon name="comment" color="#666" size="28" />
+            <view class="number">{{ item.comment_num }} 评论</view>
+          </view>
+        </view>
+        <l-tag shape="circle" bg-color="#f3f3f3" font-color="#3963BC" slot="more" size="large">
+          联系电话：{{ item.mobile }}
+        </l-tag>
+      </l-card>
+    </view>
+  </view>
   <!--结束------卡片列表 -->
-  <l-card type="avatar" l-class="card" image="{{ worker.photo }}" title="{{ worker.name }}" describe="区域：{{ worker.area }}">
-    <!-- 此处为content -->
-    <view class="avter-content">
-      {{ worker.introduce}}
-    </view>
-    <view class="avter-share-container">
-      <view class="like-container">
-        <l-icon name="default" color="#666" size="28" />
-        <view class="number">{{ worker.comment_num }} 评论</view>
-      </view>
-    </view>
-    <l-tag shape="circle" bg-color="#f3f3f3" font-color="#3963BC" slot="more" size="large">
-      联系电话：{{ worker.mobile }}
-    </l-tag>
-  </l-card>
-  <l-card type="avatar" l-class="card" image="{{ worker.photo }}" title="{{ worker.name }}" describe="区域：{{ worker.area }}">
-    <!-- 此处为content -->
-    <view class="avter-content">
-      {{ worker.introduce}}
-    </view>
-    <view class="avter-share-container">
-      <view class="like-container">
-        <l-icon name="default" color="#666" size="28" />
-        <view class="number">{{ worker.comment_num }} 评论</view>
-      </view>
-    </view>
-    <l-tag shape="circle" bg-color="#f3f3f3" font-color="#3963BC" slot="more" size="large">
-      联系电话：{{ worker.mobile }}
-    </l-tag>
-  </l-card>
-  <l-card type="avatar" l-class="card" image="{{ worker.photo }}" title="{{ worker.name }}" describe="区域：{{ worker.area }}">
-    <!-- 此处为content -->
-    <view class="avter-content">
-      {{ worker.introduce}}
-    </view>
-    <view class="avter-share-container">
-      <view class="like-container">
-        <l-icon name="default" color="#666" size="28" />
-        <view class="number">{{ worker.comment_num }} 评论</view>
-      </view>
-    </view>
-    <l-tag shape="circle" bg-color="#f3f3f3" font-color="#3963BC" slot="more" size="large">
-      联系电话：{{ worker.mobile }}
-    </l-tag>
-  </l-card>
 
 </view>
