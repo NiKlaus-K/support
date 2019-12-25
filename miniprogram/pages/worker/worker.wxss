@@ -13,7 +13,7 @@
 .flex {
     display: flex;
 }
-
+/* ====================基本信息区域======================= */
 .worker-container {
     display: flex;
     /* 设置水平排列，起点在左 */
@@ -22,9 +22,8 @@
     justify-content: flex-start;
     /* 不换行 */
     flex-wrap: nowrap;
-    width: 92%;
+    width: 100%;
     margin: 12px 0px;
-    padding: 0 10px;
 }
 
 
@@ -66,18 +65,17 @@
   display: block;
 }
 
-/* 工作人员描述卡片信息区域 */
-
+/* ====================人员描述区域======================= */
 .worker-introduce {
-  width: 88%;
+  width: 100%;
   display: flex;
     /* 设置水平排列，起点在左 */
   flex-direction: row;
   /* 水平居左 */
   justify-content: flex-start;
   margin: 0;
-  font-size: 11pt;
-  background-color: #f4f5f7;
+  font-size: 28rpx;
+  color: #333;
   border-radius: 0.3rem;
   margin-bottom: 10px;
   padding: 10px;
@@ -95,7 +93,7 @@
 }
 
 
-/* 设置打分、评论按钮区域 */
+/* ============================提交评论区域============================ */
 
 .worker-comment .flex {
     /* 设置flex布局两端对齐 */
@@ -119,19 +117,17 @@
     border-radius: 0.8rem;
 }
 
-/* 评论区  副标题 */
-
+/* ============================评论列表区域============================ */
 h2 {
     font-size: 14pt;
-    width: 92%;
+    width: 100%;
     left: 0px;
+    color: #333;
     margin-top: 10px;
     margin-bottom: 5px;
 }
 
-
-/* 分割线 */
-
+/* ============================分割线============================ */
 .divLine {
     margin: 0;
     background: #e4e4e4;
@@ -139,11 +135,8 @@ h2 {
     height: 3rpx;
 }
 
-
-/* 评论列表区域 */
-
 .comment-list {
-    width: 92%;
+    width: 100%;
     display: flex;
     /* 主轴 水平 */
     flex-direction: row;
@@ -153,8 +146,7 @@ h2 {
     align-items: center;
     /* 换行 */
     flex-wrap: wrap;
-    padding: 5px 2px;
-    margin: 5px 0 0;
+    padding: 16rpx 8rpx 8rpx;
 }
 
 .comment-name {
@@ -164,7 +156,7 @@ h2 {
 }
 
 
-/* 评论列表 右上角按钮区 */
+/* 评论列表 右上角按钮 */
 
 .comment-list-btn {
     /* ☆☆☆☆☆☆设置右上角 按钮项   居右显示 */
@@ -200,14 +192,21 @@ h2 {
 /* 评论回复区域 */
 
 .reply {
-    background-color: #eaeaec;
-    width: 88%;
+    background-color: #fff;
+    width: 90%;
     /* 居右显示 */
     margin-left: auto;
     margin-bottom: 8px;
     padding: 4px;
     border-radius: 6px;
     line-height: 1.2rem;
+    display: block;
+    /* x偏移量 | y偏移量 | 阴影颜色 */
+    /* x偏移量 | y偏移量 | 阴影模糊半径 | 阴影颜色 */
+    /* x偏移量 | y偏移量 | 阴影模糊半径 | 阴影扩散半径 | 阴影颜色 */
+    -webkit-box-shadow: 1px 1px 2x 2px rgba(0, 0,0,0.1);
+    -moz-box-shadow: 1px 1px 2px 2px rgba(0, 0,0,0.1);
+    box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1); 
 }
 
 .reply-name {

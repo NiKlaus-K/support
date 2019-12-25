@@ -1,3 +1,5 @@
+const util = require('../../utils/util.js');
+
 // pages/worker/worker.js
 Page({
 
@@ -47,7 +49,7 @@ Page({
     console.log(workerId);//获取在首页点击的人员的id
 
     /**具体逻辑实现 */
-    // 查询worker信息——开始
+    // 查询worker信息
     const db = wx.cloud.database()
     // 查询当前用户所有的 counters
     db.collection('worker').where({
@@ -71,7 +73,6 @@ Page({
         console.error('[数据库] [查询记录] 失败：', err)
       }
     })
-    // 查询worker信息——结束
   },
 
   /**
@@ -132,7 +133,8 @@ Page({
         commentContent: el.commentContent,
         score: el.score,
         workerId: this.data.workerId,
-        replyId: this.data.replyId
+        replyId: this.data.replyId,
+        date: util.formatTime(new Date()),
       },
       success: res => {
         // 在返回结果中会包含新创建的记录的 _id

@@ -1,6 +1,7 @@
 <!-- pages/worker/worker.wxml -->
 <view style="text-align:center">{{title}}</view>
 <view class="container">
+  <!-- ===========================工作人员基本信息区域========================================== -->  
   <view class="worker-container">
     <image class="worker-photo" src="{{ worker.photo }}"></image>
     <view class="worker-info">
@@ -9,11 +10,11 @@
       <p class="worker-area">区域：{{ worker.area }}</p>
     </view>
   </view>
-  <!-- 简介 卡片 -->
+  <!-- ===========================人员简介区域========================================== -->
 
-  <view class="content worker-introduce">{{ worker.introduce }}</view>
+  <view class="content worker-introduce drop-shadow lifted">{{ worker.introduce }}</view>
 
-  <!-- 提交评论 -->
+  <!-- ===========================提交评论区域========================================== -->
   <view class="worker-comment">
     <form bindsubmit="commentSubmit" >
       <l-textarea l-class="worker-comment-textarea" placeholder="点击评价..." auto-height="{{true}}" border="{{true}}" indicator="{{true}}" name="commentContent" value=""/>
@@ -25,10 +26,11 @@
         </view>
       </view>
     </form>
+    <!-- ===========================评论列表区域========================================== -->
     <h2>全部评论</h2>
-    <!-- 分割线 -->
+    <!-- ===========================分割线========================================== -->
     <view class="divLine"></view>
-    <!-- 开始------评论列表 -->
+    <!-- ===========================评论列表区域========================================== -->
     <view class="comment-list">
       <l-avatar src="{{ comment.avatar }}" size="70" />
       <view class="comment-name">{{ comment.name }}</view>
@@ -44,85 +46,14 @@
       </view>
       <view class="comment-content">{{ comment.content }}</view>
       <view class="comment-time">{{ comment.time }}</view>
-      <!-- 评论回复区域 -->
+      <!-- ===========================评论回复区域========================================== -->
       <view class="reply">
         <p class="reply-name">{{ comment.reply.name }}：</p>
         <p class="reply-content">{{ comment.reply.content}}</p>
-      </view>
+      </view>  
       <view class="divLine"></view>
     </view>
-    <!-- 结束------评论列表 -->
-    <!-- 开始------评论列表 -->
-    <view class="comment-list">
-      <l-avatar src="{{ comment.avatar }}" size="80" />
-      <view class="comment-name">{{ comment.name }}</view>
-      <view class="comment-list-btn">
-        <view class="reply-btn">
-          <l-icon name="comment" color="#666" size="28" />
-          回复
-        </view>
-        <view>
-          <l-icon name="like" color="#666" size="28" />
-          {{ comment.like }}
-        </view>
-      </view>
-      <view class="comment-content">{{ comment.content }}</view>
-      <view class="comment-time">{{ comment.time }}</view>
-      <!-- 评论回复区域 -->
-      <view class="reply">
-        <p class="reply-name">{{ comment.reply.name }}：</p>
-        <p class="reply-content">{{ comment.reply.content}}</p>
-      </view>
-      <view class="divLine"></view>
-    </view>
-    <!-- 结束------评论列表 -->
-    <!-- 开始------评论列表 -->
-    <view class="comment-list">
-      <l-avatar src="{{ comment.avatar }}" size="80" />
-      <view class="comment-name">{{ comment.name }}</view>
-      <view class="comment-list-btn">
-        <view class="reply-btn">
-          <l-icon name="comment" color="#666" size="28" />
-          回复
-        </view>
-        <view>
-          <l-icon name="like" color="#666" size="28" />
-          {{ comment.like }}
-        </view>
-      </view>
-      <view class="comment-content">{{ comment.content }}</view>
-      <view class="comment-time">{{ comment.time }}</view>
-      <!-- 评论回复区域 -->
-      <view class="reply">
-        <p class="reply-name">{{ comment.reply.name }}：</p>
-        <p class="reply-content">{{ comment.reply.content}}</p>
-      </view>
-      <view class="divLine"></view>
-    </view>
-    <!-- 结束------评论列表 -->
-    <!-- 开始------评论列表 -->
-    <view class="comment-list">
-      <l-avatar src="{{ comment.avatar }}" size="80" />
-      <view class="comment-name">{{ comment.name }}</view>
-      <view class="comment-list-btn">
-        <view class="reply-btn">
-          <l-icon name="comment" color="#666" size="28" />
-          回复
-        </view>
-        <view>
-          <l-icon name="like" color="#666" size="28" />
-          {{ comment.like }}
-        </view>
-      </view>
-      <view class="comment-content">{{ comment.content }}</view>
-      <view class="comment-time">{{ comment.time }}</view>
-      <!-- 评论回复区域 -->
-      <view class="reply">
-        <p class="reply-name">{{ comment.reply.name }}：</p>
-        <p class="reply-content">{{ comment.reply.content}}</p>
-      </view>
-      <view class="divLine"></view>
-    </view>
-    <!-- 结束------评论列表 -->
+    <!-- ===========================结束 分割线========================================== -->
+    
   </view>
 </view>

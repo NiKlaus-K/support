@@ -1,6 +1,15 @@
+/* ================页面区域================ */
 /* 设置页面背景颜色 */
 page {
   background-color: #f7f7f7;
+}
+/* ================搜索框区域================ */
+
+
+/* ================轮播图区域================ */
+.swiper{
+  margin-top:4rpx;
+  margin-bottom:28rpx;  
 }
 /* 设置轮播图 圆角 */
 .slide-image {
@@ -10,6 +19,7 @@ page {
   /* border-bottom-right-radius:1rem;
   border-bottom-left-radius:1rem; */
 }
+/* ================卡片列表区域================ */
 /* 设置卡片列表 下边距 */
 .card{
   margin-bottom:0.6rem!important; 

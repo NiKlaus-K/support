@@ -1,9 +1,10 @@
 {
   "pages": [
-   
-    "pages/index/index","pages/index2/index",
+    "pages/index/index",
+   "pages/worker/worker",
+    "pages/index2/index",
     "pages/addWorker/addWorker",
-    "pages/worker/worker",
+    
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
     "pages/databaseGuide/databaseGuide",
