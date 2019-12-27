@@ -1,10 +1,11 @@
 {
   "pages": [
+  
     "pages/index/index",
-   "pages/worker/worker",
     "pages/index2/index",
     "pages/addWorker/addWorker",
-    
+   "pages/worker/worker",
+  
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
     "pages/databaseGuide/databaseGuide",
@@ -74,7 +75,9 @@
     "l-loadmore": "style/dist/loadmore/index",
     "l-textarea": "style/dist/textarea/index",
     "l-button": "style/dist/button/index",
-    "l-image-picker": "style/dist/image-picker/index"
+    "l-image-picker": "style/dist/image-picker/index",
+    "l-segment": "style/dist/segment/index",
+    "l-segment-item": "style/dist/segment-item/index"
   },
   "sitemapLocation": "sitemap.json"
 }

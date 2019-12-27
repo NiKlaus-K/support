@@ -1,7 +1,7 @@
 <!-- pages/worker/worker.wxml -->
 <view style="text-align:center">{{title}}</view>
 <view class="container">
-  <!-- ===========================工作人员基本信息区域========================================== -->  
+  <!-- ===========================工作人员基本信息区域========================================== -->
   <view class="worker-container">
     <image class="worker-photo" src="{{ worker.photo }}"></image>
     <view class="worker-info">
@@ -16,44 +16,50 @@
 
   <!-- ===========================提交评论区域========================================== -->
   <view class="worker-comment">
-    <form bindsubmit="commentSubmit" >
-      <l-textarea l-class="worker-comment-textarea" placeholder="点击评价..." auto-height="{{true}}" border="{{true}}" indicator="{{true}}" name="commentContent" value=""/>
+    <form bindsubmit="commentSubmit">
+      <l-textarea l-class="worker-comment-textarea" placeholder="点击评价..." auto-height="{{true}}" border="{{true}}" indicator="{{true}}" name="commentContent" value="" />
       <view class="flex">
-        <l-rate size="38" bind:linChange="changeScore"/>
-        <input type="number" hidden="true" name="score" value="{{score}}"/>
+        <l-rate size="38" bind:linChange="changeScore" />
+        <input type="number" hidden="true" name="score" value="{{score}}" />
         <view class="comment-submit">
           <button size="mini" form-type="submit">评价</button>
         </view>
       </view>
     </form>
     <!-- ===========================评论列表区域========================================== -->
-    <h2>全部评论</h2>
     <!-- ===========================分割线========================================== -->
-    <view class="divLine"></view>
+    <view class="divBlank"></view>
+    <!-- <view class="divLine"></view> -->
     <!-- ===========================评论列表区域========================================== -->
     <view class="comment-list">
-      <l-avatar src="{{ comment.avatar }}" size="70" />
-      <view class="comment-name">{{ comment.name }}</view>
-      <view class="comment-list-btn">
-        <view class="reply-btn">
-          <l-icon name="comment" color="#666" size="28" />
-          回复
-        </view>
-        <view>
-          <l-icon name="like" color="#666" size="28" />
-          {{ comment.like }}
-        </view>
+      <!-- 选项卡 -->
+      <view>
+        <l-segment bind:linchange="changeTabs">
+          <l-segment-item tab="全部评论" key="one" />
+        </l-segment>
       </view>
-      <view class="comment-content">{{ comment.content }}</view>
-      <view class="comment-time">{{ comment.time }}</view>
-      <!-- ===========================评论回复区域========================================== -->
-      <view class="reply">
-        <p class="reply-name">{{ comment.reply.name }}：</p>
-        <p class="reply-content">{{ comment.reply.content}}</p>
-      </view>  
-      <view class="divLine"></view>
+      <view class="comment-item">
+        <l-avatar src="{{ comment.avatar }}" size="70" />
+        <view class="comment-name">{{ comment.name }}</view>
+        <view class="comment-list-btn">
+          <view class="reply-btn">
+            <l-icon name="comment" color="#666" size="28" /> 回复
+          </view>
+          <view>
+            <l-icon name="like" color="#666" size="28" /> {{ comment.like }}
+          </view>
+        </view>
+        <view class="comment-content">{{ comment.content }}</view>
+        <view class="comment-time">{{ comment.time }}</view>
+        <!-- ===========================评论回复区域========================================== -->
+        <view class="reply">
+          <p class="reply-name">{{ comment.reply.name }}：</p>
+          <p class="reply-content">{{ comment.reply.content}}</p>
+        </view>
+        <view class="divLine"></view>
+      </view>
     </view>
-    <!-- ===========================结束 分割线========================================== -->
-    
+    <!-- ===========================评论列表区域====结束===================================== -->
+
   </view>
 </view>
