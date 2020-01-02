@@ -127,8 +127,36 @@ h2 {
     margin-bottom: 5px;
 }
 
-
+.comment-title{
+    margin-bottom: 10px;
+}
+/* 评论列表 */
 .comment-list {
+    width: 100%;
+    display: flex;
+    /* 主轴 垂直 */
+    flex-direction: column;
+    /* 主轴 自上而下 */
+    justify-content: flex-start;
+    /* 交叉轴 自左而右 */
+    align-items: flex-start;
+    /* 换行 */
+    flex-wrap: wrap;
+    padding: 16rpx 8rpx 8rpx;
+}
+/* 单个评论 */
+.comment-item {
+    width: 100%;
+    display: flex;
+    /* 主轴 垂直 */
+    flex-direction: column;
+    /* 主轴 居左 */
+    justify-content: space-between;
+    /* 换行 */
+    flex-wrap: nowrap;
+}
+/* 评论顶部一行：评论人头像、姓名、右上角按钮 */
+.comment-item-title{
     width: 100%;
     display: flex;
     /* 主轴 水平 */
@@ -136,12 +164,12 @@ h2 {
     /* 主轴 居左 */
     justify-content: flex-start;
     /* 交叉轴 垂直居中 */
-    align-items: center;
+    align-items: flex-start;
     /* 换行 */
     flex-wrap: wrap;
     padding: 16rpx 8rpx 8rpx;
 }
-
+/* 评论人姓名 */
 .comment-name {
     font-size: 12pt;
     color: #355eb6;
@@ -150,7 +178,6 @@ h2 {
 
 
 /* 评论列表 右上角按钮 */
-
 .comment-list-btn {
     /* ☆☆☆☆☆☆设置右上角 按钮项   居右显示 */
     margin-left: auto;
@@ -182,7 +209,8 @@ h2 {
 }
 
 
-/* 评论回复区域 */
+/* ============================评论回复区域============================ */
+
 
 .reply {
     background-color: #fff;

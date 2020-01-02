@@ -2,12 +2,11 @@ const util = require('../../utils/util.js');
 
 // pages/worker/worker.js
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    workerId:'23124325123123',
+    workerId:'',
     worker:{
       photo: '',
       name:'',
@@ -18,20 +17,7 @@ Page({
       area: ''
     },
     score:'',
-    replyId:'',
-    comment:{
-      id:1,
-      name:"张三",
-      avatar:'http://img3.a0bi.com/upload/ttq/20161015/1476518118768.png',
-      content:'我的看法度搜发生的纠纷拉水电费那到时见覅偶爱上对方就奥法',
-      time:'Wed Jul 24 2019 01:52:09 GMT+0800 (中国标准时间) ',
-      like:12,
-      reply:{
-        id:1,
-        name:'李四',
-        content:'就打发i就打发iOS的叫法是觉得覅的覅奇偶就打发iOS的叫法是觉得覅的覅奇偶就打发iOS的叫法是觉得覅的覅奇偶就打发iOS的叫法是觉得覅的覅奇偶OS的叫法是觉得覅的覅奇偶'
-      }
-    }
+    comments: []
 
   },
   onLoad: function (options) {
@@ -43,19 +29,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let that = this;
     /**括号内的options可以改名的，结果一样，无影响，已测试！*/
-    console.log(options);//就是一个接收传递过来的参数的对象
-    var workerId = options.id; //（接受url传参，不限制只能传递id变量名，可以传递多个变量名值）
-    console.log(workerId);//获取在首页点击的人员的id
-
+    // console.log(options);//就是一个接收传递过来的参数的对象
+    // 将获取到的人员ID赋值到当前页面
+    this.setData({
+      'workerId' : options.id //（接受url传参，不限制只能传递id变量名，可以传递多个变量名值）
+    })
+    console.log(this.workerId);
     /**具体逻辑实现 */
     // 查询worker信息
     const db = wx.cloud.database()
     // 查询当前用户所有的 counters
     db.collection('worker').where({
       // openid是什么？
-      _openid: this.data.openid,
-      _id:workerId
+      _openid : this.data.openid,
+      _id : this.workerId
     }).get({
       success: res => {
         this.setData({
@@ -71,7 +60,29 @@ Page({
           title: '列表获取失败，请联系管理员'
         })
         console.error('[数据库] [查询记录] 失败：', err)
-      }
+      },
+    })
+    // 获取评论列表
+    db.collection('comments').where({
+      workerId:this.workerId
+    }).get({
+      success: res => {
+        this.setData({
+          queryResult: JSON.stringify(res, null, 2),
+          // 将获取到的数据库信息通过setData的方式赋给页面
+          'comments': res.data
+        })
+        console.log('[数据库] [查询记录] 成功: ', res)
+        console.log('[comments] 成功: ', comments)
+
+      },
+      fail: err => {
+        wx.showToast({
+          icon: 'none',
+          title: '列表获取失败，请联系管理员'
+        })
+        console.error('[数据库] [查询记录] 失败：', err)
+      },
     })
   },
 
@@ -187,6 +198,32 @@ Page({
 
     // 还需要在函数里添加一下代码，用于完成加载后停止下拉刷新动画效果
     // wx.stopPullDownRefresh() //手动刷新完成后停止下拉刷新动效
-  }
+  },
   // 添加下拉刷新（钩子函数）——结束
+  getCommentList(){
+    // 查询评论嘻嘻
+    const db = wx.cloud.database()
+    // 查询当前用户所有的评论
+    db.collection('comments').where({
+      // openid是什么？
+      _openid: this.data.openid,
+      _id:workerId
+    }).get({
+      success: res => {
+        this.setData({
+          queryResult: JSON.stringify(res.data, null, 2),
+          // 将获取到的数据库信息通过setData的方式赋给页面
+          'comments': res.data[0]
+        })
+        console.log('[数据库] [查询记录] 成功: ', res.data[0])
+      },
+      fail: err => {
+        wx.showToast({
+          icon: 'none',
+          title: '列表获取失败，请联系管理员'
+        })
+        console.error('[数据库] [查询记录] 失败：', err)
+      }
+    })
+  }
 })

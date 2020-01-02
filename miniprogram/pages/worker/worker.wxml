@@ -1,65 +1,68 @@
 <!-- pages/worker/worker.wxml -->
 <view style="text-align:center">{{title}}</view>
 <view class="container">
-  <!-- ===========================工作人员基本信息区域========================================== -->
-  <view class="worker-container">
-    <image class="worker-photo" src="{{ worker.photo }}"></image>
-    <view class="worker-info">
-      <p class="worker-name">{{ worker.name }}</p>
-      <p class="worker-mobile">联系电话：{{ worker.mobile }}</p>
-      <p class="worker-area">区域：{{ worker.area }}</p>
-    </view>
-  </view>
-  <!-- ===========================人员简介区域========================================== -->
+	<!-- ===========================工作人员基本信息区域========================================== -->
+	<view class="worker-container">
+		<image class="worker-photo" src="{{ worker.photo }}"></image>
+		<view class="worker-info">
+			<p class="worker-name">{{ worker.name }}</p>
+			<p class="worker-mobile">联系电话：{{ worker.mobile }}</p>
+			<p class="worker-area">区域：{{ worker.area }}</p>
+		</view>
+	</view>
+	<!-- ===========================人员简介区域========================================== -->
 
-  <view class="content worker-introduce drop-shadow lifted">{{ worker.introduce }}</view>
+	<view class="content worker-introduce drop-shadow lifted">{{ worker.introduce }}</view>
 
-  <!-- ===========================提交评论区域========================================== -->
-  <view class="worker-comment">
-    <form bindsubmit="commentSubmit">
-      <l-textarea l-class="worker-comment-textarea" placeholder="点击评价..." auto-height="{{true}}" border="{{true}}" indicator="{{true}}" name="commentContent" value="" />
-      <view class="flex">
-        <l-rate size="38" bind:linChange="changeScore" />
-        <input type="number" hidden="true" name="score" value="{{score}}" />
-        <view class="comment-submit">
-          <button size="mini" form-type="submit">评价</button>
-        </view>
-      </view>
-    </form>
-    <!-- ===========================评论列表区域========================================== -->
-    <!-- ===========================分割线========================================== -->
-    <view class="divBlank"></view>
-    <!-- <view class="divLine"></view> -->
-    <!-- ===========================评论列表区域========================================== -->
-    <view class="comment-list">
-      <!-- 选项卡 -->
-      <view>
-        <l-segment bind:linchange="changeTabs">
-          <l-segment-item tab="全部评论" key="one" />
-        </l-segment>
-      </view>
-      <view class="comment-item">
-        <l-avatar src="{{ comment.avatar }}" size="70" />
-        <view class="comment-name">{{ comment.name }}</view>
-        <view class="comment-list-btn">
-          <view class="reply-btn">
-            <l-icon name="comment" color="#666" size="28" /> 回复
-          </view>
-          <view>
-            <l-icon name="like" color="#666" size="28" /> {{ comment.like }}
-          </view>
-        </view>
-        <view class="comment-content">{{ comment.content }}</view>
-        <view class="comment-time">{{ comment.time }}</view>
-        <!-- ===========================评论回复区域========================================== -->
-        <view class="reply">
-          <p class="reply-name">{{ comment.reply.name }}：</p>
-          <p class="reply-content">{{ comment.reply.content}}</p>
-        </view>
-        <view class="divLine"></view>
-      </view>
-    </view>
-    <!-- ===========================评论列表区域====结束===================================== -->
+	<!-- ===========================提交评论区域========================================== -->
+	<view class="worker-comment">
+		<form bindsubmit="commentSubmit">
+			<l-textarea l-class="worker-comment-textarea" placeholder="点击评价..." auto-height="{{true}}" border="{{true}}" indicator="{{true}}" name="commentContent" value="" />
+			<view class="flex">
+				<l-rate size="38" bind:linChange="changeScore" />
+				<input type="number" hidden="true" name="score" value="{{score}}" />
+				<view class="comment-submit">
+					<button size="mini" form-type="submit">评价</button>
+				</view>
+			</view>
+		</form>
+		<!-- ===========================评论列表区域========================================== -->
+		<!-- ===========================分割线========================================== -->
+		<view class="divBlank"></view>
+		<!-- <view class="divLine"></view> -->
+		<!-- ===========================评论列表区域========================================== -->
+		<view class="comment-list">
+			<view class="comment-title">
+				<l-segment bind:linchange="changeTabs" height="36" item-height="36" item-width="60">
+					<l-segment-item tab="全部评论" key="one" />
+				</l-segment>
+			</view>
+			<!-- 选项卡 -->
+			<view class="comment-item" wx:for="{{comments}}" wx:key="_id" wx:for-item="item" data-id="{{item._id}}">
+				<view class="comment-item-title">
+					<l-avatar src="{{ item.avatar }}" size="70" />
+					<view class="comment-name">{{ item.name }}</view>
+					<view class="comment-list-btn">
+						<view class="reply-btn">
+							<l-icon name="comment" color="#666" size="28" /> 回复
+						</view>
+						<view>
+							<l-icon name="like" color="#666" size="28" /> {{ item.like }}
+						</view>
+					</view>
+				</view>
+				<view class="comment-content">{{ item.commentContent }}</view>
+				<view class="comment-time">{{ item.date }}</view>
 
-  </view>
+				<!-- ===========================评论回复区域========================================== -->
+				<view class="reply" wx:if="{{item.reply.length > 0}}">
+					<p class="reply-name">{{ item.reply.name }}：</p>
+					<p class="reply-content">{{ item.reply.content}}</p>
+				</view>
+				<view class="divLine"></view>
+			</view>
+		</view>
+		<!-- ===========================评论列表区域====结束===================================== -->
+
+	</view>
 </view>

@@ -108,7 +108,7 @@ Page({
   },
   // 路由跳转 带参——开始
   click:function(e){
-    // console.log(e);
+    console.log(e);
     var workerId = e.currentTarget.dataset.id
     wx.navigateTo({
       url: '../worker/worker?title=worker&id=' + workerId
