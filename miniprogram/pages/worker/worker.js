@@ -136,6 +136,7 @@ Page({
   },
   // 提交评论——开始
   commentSubmit: function (e) {
+    
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
     const db = wx.cloud.database()
     let el = e.detail.value
@@ -143,6 +144,8 @@ Page({
       data: {
         commentContent: el.commentContent,
         score: el.score,
+        // inputer:  this.userInfo.nickName,
+        // avatarUrl: this.userInfo.avatarUrl,
         workerId: this.data.workerId,
         replyId: this.data.replyId,
         date: util.formatTime(new Date()),

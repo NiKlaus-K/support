@@ -1,10 +1,10 @@
 //index.js
 const app = getApp()
-// 开始----------------------调用用户登录API
 Page({
   data: {
     avatarUrl: './user-unlogin.png',
     userInfo: {},
+    _openid: '',
     logged: false,
     takeSession: false,
     requestResult: '',
@@ -23,19 +23,20 @@ Page({
     // 滑动动画时长
     duration: 1000,
     mobile:111254648,
-    worker: []
+    worker: [],
+    canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
 
   onLoad: function() {
-    wx.stopPullDownRefresh() //手动刷新完成后停止下拉刷新动效
+    // ===========================手动刷新完成后停止下拉刷新动效=======================================
+    wx.stopPullDownRefresh() 
     if (!wx.cloud) {
       wx.redirectTo({
         url: '../chooseLib/chooseLib',
       })
       return
     }
-
-    // 获取用户信息
+    // =================================获取用户信息=================================
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
@@ -50,9 +51,47 @@ Page({
           })
         }
       }
-    })
-    // 查询worker信息——开始
+    }),
+    this.onGetOpenid()
     const db = wx.cloud.database()
+    // db.collection('comments').add({
+    //   data: {
+    //     commentContent: el.commentContent,
+    //     score: el.score,
+    //     // inputer:  this.userInfo.nickName,
+    //     // avatarUrl: this.userInfo.avatarUrl,
+    //     workerId: this.data.workerId,
+    //     replyId: this.data.replyId,
+    //     date: util.formatTime(new Date()),
+    //   },
+    //   success: res => {
+    //     // 在返回结果中会包含新创建的记录的 _id
+    //     this.setData({
+    //       commentContent: el.commentContent,
+    //       score: el.score,
+    //       workerId: this.data.workerId,
+    //       replyId: this.data.replyId
+    //     })
+    //     wx.showToast({
+    //       title: '评论成功',
+    //     })
+    //     console.log('[数据库] [新增评论] 成功，评论 _id: ', res._id)
+    //     // 保存后清空页面
+    //     this.setData({
+    //       form_info: '',
+    //       isClear: true
+    //     })
+    //   },
+    //   fail: err => {
+    //     wx.showToast({
+    //       icon: 'none',
+    //       title: '新增评论'
+    //     })
+    //     console.error('[数据库] [新增评论] 失败：', err)
+    //   }
+    // })
+    // =================================查询worker信息=================================
+    // const db = wx.cloud.database()
     // 查询当前用户所有的 counters
     db.collection('worker').where({
       _openid: this.data.openid
@@ -73,9 +112,11 @@ Page({
         console.error('[数据库] [查询记录] 失败：', err)
       }
     })
-    // 查询worker信息——结束
   },
-
+  bindGetUserInfo (e) {
+    console.log(e.detail.userInfo)
+  },
+  // =================================获取用户基本信息=================================
   onGetUserInfo: function(e) {
     if (!this.logged && e.detail.userInfo) {
       this.setData({
@@ -85,7 +126,28 @@ Page({
       })
     }
   },
-  // 轮播图
+  // ===========================获取用户openid================================
+  onGetOpenid: function() {
+    // 调用云函数
+    wx.cloud.callFunction({
+      name: 'login',
+      data: {},
+      success: res => {
+        console.log('[云函数] [login] user openid: ', res.result.openid)
+        app.globalData.openid = res.result.openid
+        this.setData({
+          _openid: app.globalData.openid
+        })
+      },
+      fail: err => {
+        console.error('[云函数] [login] 调用失败', err)
+        wx.navigateTo({
+          url: '../deployFunctions/deployFunctions',
+        })
+      }
+    })
+  },
+  // =================================轮播图=================================
   changeIndicatorDots: function (e) {
     this.setData({
       indicatorDots: !this.data.indicatorDots
@@ -106,7 +168,7 @@ Page({
       duration: e.detail.value
     })
   },
-  // 路由跳转 带参——开始
+  // =================================路由跳转 带参=================================
   click:function(e){
     console.log(e);
     var workerId = e.currentTarget.dataset.id
@@ -114,8 +176,7 @@ Page({
       url: '../worker/worker?title=worker&id=' + workerId
     })
   },
-  // 路由跳转 带参——结束
-  // 添加下拉刷新（钩子函数）——开始
+  // =================================添加下拉刷新（钩子函数）=================================
   onPullDownRefresh() {
     //var that = this;
     // that.setData({
@@ -125,7 +186,5 @@ Page({
     // 还需要在onLoad()函数里添加一下代码，用于完成load时停止下拉刷新动画效果
     // wx.stopPullDownRefresh() //手动刷新完成后停止下拉刷新动效
   }
-  // 添加下拉刷新（钩子函数）——结束
 
 })
-// 结束----------------------调用用户登录API
