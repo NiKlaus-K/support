@@ -12,15 +12,14 @@
 	</view>
 	<!-- ===========================人员简介区域========================================== -->
 
-	<view class="content worker-introduce drop-shadow lifted">{{ worker.introduce }}</view>
+	<view class="content worker-introduce">{{ worker.introduce }}</view>
 
 	<!-- ===========================提交评论区域========================================== -->
 	<view class="worker-comment">
 		<form bindsubmit="commentSubmit">
-			<l-textarea l-class="worker-comment-textarea" placeholder="点击评价..." auto-height="{{true}}" border="{{true}}" indicator="{{true}}" name="commentContent" value="" />
+			<l-textarea l-class="worker-comment-textarea" placeholder="点击评价..." auto-height="{{true}}" border="{{true}}" indicator="{{true}}" name="commentContent" value="{{commentContent}}" />
 			<view class="flex">
-				<l-rate size="38" bind:linChange="changeScore" />
-				<input type="number" hidden="true" name="score" value="{{score}}" />
+				<l-rate size="38" score="{{score}}"/>
 				<view class="comment-submit">
 					<button size="mini" form-type="submit">评价</button>
 				</view>
