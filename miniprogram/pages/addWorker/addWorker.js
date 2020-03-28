@@ -10,274 +10,147 @@ Page({
      * 页面的初始数据
      */
     data: {
-        worker: {
-            name: '',
-            photo: '',
-            mobile: '',
-            introduce: '',
-            area: '',
-            citysIndex: [0, 0, 0],
-        }
+        name: '',
+        photoTemp: '',
+        photo: '',
+        mobile: '',
+        introduce: '',
+        area: '',
+        citysIndex: [0, 0, 0]
     },
 
-    /**
-     * 生命周期函数--监听页面加载
-     */
     onLoad: function(options) {
-      // // 城市选择器——开始
-      // var that = this;
-      // if (wx.getStorageSync('global_cityData')) {
-      //   var cityArray = wx.getStorageSync('global_cityData');
-      // } else {
-      //   //定义三列空数组
-      //   var cityArray = [
-      //     [],
-      //     [],
-      //     [],
-      //   ];
-      //   for (let i = 0, len = arrays.length; i < len; i++) {
-      //     switch (arrays[i]['level']) {
-      //       case 1:
-      //         //第一列
-      //         cityArray[0].push(arrays[i]["name"]);
-      //         break;
-      //       case 2:
-      //         //第二列(默认由第一列第一个关联)
-      //         if (arrays[i]['sheng'] == arrays[0]['sheng']) {
-      //           cityArray[1].push(arrays[i]["name"]);
-      //         }
-      //         break;
-      //       case 3:
-      //         //第三列(默认第一列第一个、第二列第一个关联)
-      //         if (arrays[i]['sheng'] == arrays[0]['sheng'] && arrays[i]['di'] == arrays[1]['di']) {
-      //           cityArray[2].push(arrays[i]["name"]);
-      //         }
-      //         break;
-      //     }
-      //   }
-      //   wx.setStorageSync('global_cityData', cityArray);
-      // }
-
-      // that.setData({
-      //   cityArray: cityArray
-      // });
-      // // 城市选择器——结束
-    },
-
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function() {
       
     },
 
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function() {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function() {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function() {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function() {
-
-    },
-    /**
-     * 保存按钮事件——开始
-     */
-    // onAddWorker: function() {
-    //     const db = wx.cloud.database()
-    //     db.collection('worker').add({
-    //         data: {
-    //             count: 1
-    //         },
-    //         success: res => {
-    //             // 在返回结果中会包含新创建的记录的 _id
-    //             this.setData({
-    //                 counterId: res._id,
-    //                 count: 1
-    //             })
-    //             wx.showToast({
-    //                 title: '新增记录成功',
-    //             })
-    //             console.log('[数据库] [新增记录] 成功，记录 _id: ', res._id)
-    //         },
-    //         fail: err => {
-    //             wx.showToast({
-    //                 icon: 'none',
-    //                 title: '新增记录失败'
-    //             })
-    //             console.error('[数据库] [新增记录] 失败：', err)
-    //         }
-    //     })
-    // },
     formSubmit: function(e) {
-        console.log(e)
-        const db = wx.cloud.database()
-        let el = e.detail.value
-        // let worker = {
-        //     name: el.name,
-        //     photo: el.photo,
-        //     mobile: el.mobile,
-        //     introduce: el.introduce,
-        //     area: el.area
-        // }
-        // console.log("worker:" + worker)
-        // console.log("worker:" + worker.name)
-        // console.log("worker:" + worker.photo)
-        // console.log("worker:" + worker.mobile)
-        // console.log("worker:" + worker.introduce)
-        db.collection('worker').add({
+        // console.log(e);
+        const db = wx.cloud.database();
+        let el = e.detail.value;
+        // 上传图片到云服务器，然后then
+        wx.cloud.uploadFile({
+          cloudPath: 'workerPhotos/' + this.data.name + this.data.photoTemp.match(/\.[^.]+?$/)[0], // 上传至云端的路径
+          filePath: this.data.photoTemp, // 小程序临时文件路径
+        }).then( res =>{
+          console.log('[上传照片] 成功：', res)
+          // 返回文件 ID
+          // console.log(res.fileID)
+          this.setData({
+            photo: res.fileID
+          });
+          db.collection('workers').add({
             data: {
-                name: el.name,
-                photo: el.photo,
-                mobile: el.mobile,
-                introduce: el.introduce,
-                area: el.area
+              name: el.name,
+              photo: this.data.photo,
+              mobile: el.mobile,
+              introduce: el.introduce,
+              area: el.area
             },
             success: res => {
-                // 在返回结果中会包含新创建的记录的 _id
-                this.setData({
-                    workerId: res._id,
-                    name: el.name,
-                    photo: el.photo,
-                    mobile: el.mobile,
-                    introduce: el.introduce,
-                    area: el.area
-                })
-                wx.showToast({
-                    title: '新增记录成功',
-                })
-                console.log('[数据库] [新增记录] 成功，记录 _id: ', res._id)
-                // 保存后清空页面
-                this.setData({
-                  form_info: '',
-                  isClear:true
-                })
+              wx.showToast({
+                title: '新增员工成功',
+              })
+              console.log('[数据库] [新增记录] 成功，记录 _id: ', res._id)
+              // 保存后清空页面
+              this.setData({
+                form_info: '',
+                isClear: true,
+                photo: '',
+                photoTemp:'',
+                name: ''
+              })
             },
             fail: err => {
-                wx.showToast({
-                    icon: 'none',
-                    title: '新增记录失败'
-                })
-                console.error('[数据库] [新增记录] 失败：', err)
+              wx.showToast({
+                icon: 'none',
+                title: '新增员工失败'
+              })
+              console.error('[数据库] [新增记录] 失败：', err)
             }
+          })
         })
+        .catch ( reason => {
+          console.log('照片上传失败：' + reason);
+        });
     },
-    /**
-     * 保存按钮事件——结束
-     */
-  // 上传图片
-  doUpload: function () {
-    // 选择图片
-    wx.chooseImage({
-      count: 1,
-      sizeType: ['compressed'],
-      sourceType: ['album', 'camera'],
-      success: function (res) {
-
-        wx.showLoading({
-          title: '上传中',
-        })
-
-        const filePath = res.tempFilePaths[0]
-
-        // 上传图片
-        const cloudPath = 'my-image' + filePath.match(/\.[^.]+?$/)[0]
-        wx.cloud.uploadFile({
-          cloudPath,
-          filePath,
-          success: res => {
-            console.log('[上传文件] 成功：', res)
-
-            app.globalData.fileID = res.fileID
-            app.globalData.cloudPath = cloudPath
-            app.globalData.imagePath = filePath
-
-            wx.navigateTo({
-              url: '../storageConsole/storageConsole'
-            })
-          },
-          fail: e => {
-            console.error('[上传文件] 失败：', e)
-            wx.showToast({
-              icon: 'none',
-              title: '上传失败',
-            })
-          },
-          complete: () => {
-            wx.hideLoading()
-          }
-        })
-
-      },
-      fail: e => {
-        console.error(e)
-      }
+  bindKeyInput: function (e) {
+    this.setData({
+      name: e.detail.detail.value
     })
   },
+  // 上传图片
+  addPhoto: function(e){
+      this.setData({
+         photoTemp: e.detail.current[0]
+      })
+  },
+  doUpload: function () {
+    wx.cloud.uploadFile({
+      cloudPath: 'workerPhotos/' + this.data.name + this.data.photoTemp.match(/\.[^.]+?$/)[0], // 上传至云端的路径
+      filePath: this.data.photoTemp, // 小程序临时文件路径
+      // success: res => {
+      //   console.log('[上传照片] 成功：', res)
+      //   // 返回文件 ID
+      //   console.log(res.fileID)
+      //   this.setData({
+      //     photo : res.fileID
+      //   })
+      // },
+      // fail: e => {
+      //   console.error('[上传文件] 失败：', e)
+      //   wx.showToast({
+      //     icon: 'none',
+      //     title: '上传照片失败',
+      //   })
+      // }
+    })
+  }
 
+  // doUpload: function () {
+  //   // 选择图片
+  //   wx.chooseImage({
+  //     count: 1,
+  //     sizeType: ['compressed'],
+  //     sourceType: ['album', 'camera'],
+  //     success: function (res) {
 
-    // ,
-    // test: function (e) {
-    //   const db = wx.cloud.database()
-    //   console.log(e)
-    //   const name = e.detail.detail.value
-    //   console.log(name)
-    //   db.collection('worker').add({
-    //     data: {
-    //       name: name
-    //     },
-    //     success: res => {
-    //       // 在返回结果中会包含新创建的记录的 _id
-    //       this.setData({
-    //         workerId: res._id,
-    //         name: name
-    //       })
-    //       wx.showToast({
-    //         title: '新增记录成功',
-    //       })
-    //       console.log('[数据库] [新增记录] 成功，记录 _id: ', res._id)
-    //     },
-    //     fail: err => {
-    //       wx.showToast({
-    //         icon: 'none',
-    //         title: '新增记录失败'
-    //       })
-    //       console.error('[数据库] [新增记录] 失败：', err)
-    //     }
-    //   })
-    // }
+  //       wx.showLoading({
+  //         title: '上传中',
+  //       })
+  //       const filePath = res.tempFilePaths[0]
+  //       // 上传图片
+  //       const cloudPath = 'my-image' + filePath.match(/\.[^.]+?$/)[0]
+  //       wx.cloud.uploadFile({
+  //         cloudPath,
+  //         filePath,
+  //         success: res => {
+  //           console.log('[上传文件] 成功：', res)
+  //           app.globalData.fileID = res.fileID
+  //           app.globalData.cloudPath = cloudPath
+  //           app.globalData.imagePath = filePath
+  //           wx.navigateTo({
+  //             url: '../storageConsole/storageConsole'
+  //           })
+  //         },
+  //         fail: e => {
+  //           console.error('[上传文件] 失败：', e)
+  //           wx.showToast({
+  //             icon: 'none',
+  //             title: '上传失败',
+  //           })
+  //         },
+  //         complete: () => {
+  //           wx.hideLoading()
+  //         }
+  //       })
+
+  //     },
+  //     fail: e => {
+  //       console.error(e)
+  //     }
+  //   })
+  // },
+    
   //   // 城市选择器——开始
   // func_changeCitysChange: function (e) {
   //   var that = this;

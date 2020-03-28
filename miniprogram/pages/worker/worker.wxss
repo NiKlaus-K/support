@@ -8,6 +8,11 @@
     justify-content: center;
     /* 换行 */
     flex-wrap: wrap;
+     margin: 20rpx;
+    width: 95%;
+    padding: 10rpx 0;
+    box-sizing: border-box;
+    background-color: #fff;
 }
 
 .flex {
@@ -16,11 +21,8 @@
 /* ====================基本信息区域======================= */
 .worker-container {
     display: flex;
-    /* 设置水平排列，起点在左 */
     flex-direction: row;
-    /* 水平居左 */
     justify-content: flex-start;
-    /* 不换行 */
     flex-wrap: nowrap;
     width: 100%;
     margin: 12px 0px;
@@ -85,17 +87,18 @@
 /* 评论区 */
 
 .worker-comment {
-    margin-top: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 10px;
+    width: 100%;
 }
 
 
 /* ============================提交评论区域============================ */
 
-.worker-comment .flex {
+.worker-comment .flex{
     /* 设置flex布局两端对齐 */
     justify-content: space-between;
     margin-top: 10px;
@@ -104,6 +107,10 @@
 .worker-comment .flex l-rate {
     /* flex布局下 项目item左对齐 */
     align-self: flex-start !important;
+}
+
+.comment-form{
+  width: 100%;
 }
 
 .comment-submit{

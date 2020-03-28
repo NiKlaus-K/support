@@ -1,28 +1,41 @@
 <!--pages/addworker/addworker.wxml-->
 
 <view class="container">
+  <content-title name="请填写员工的基本信息" describe="">
+  </content-title>
   <form bindsubmit="formSubmit">
-    <!-- bind:linchange="test" 在l-input上添加该属性  可绑定名为test的linchange事件（键盘输入后触发） -->
-    <l-input label="姓名" placeholder="请填写姓名"  name="name" value='{{form_info}}'/>
-    <!-- 上传图片 -->
-    <view class="photo">
-      <text>照片</text>
-      <l-image-picker count="1"  l-class="photo-picker" l-item-class="photo-item" mode="aspectFit" is-preview="{{flase}}" name="photo" src="{{imgUrl}}" mode="aspectFit" bindtap="previewImg" clear="{{ isClear }}"/>
+    <view class="top-wrap">
+      <!-- bind:linchange="test" 在l-input上添加该属性  可绑定名为test的linchange事件（键盘输入后触发） -->
+      <l-input label="姓名" placeholder="请填写姓名" name="name" value='{{form_info}}' l-class="form-item" bind:linblur="bindKeyInput"/>
+      <!-- 上传图片 -->
+      <view class="form-item photo">
+        <text class="form-item photo-text">照片</text>
+        <l-image-picker count="1" size="4" l-class="photo-picker" l-item-class="photo-item" mode="aspectFit" preview="{{true}}" name="photo" src="{{imgUrl}}"  clear="{{isClear}}" custom="{{true}}" bind:linchange="addPhoto">
+          <view class='add'>
+            <image class='add-icon' src="../../images/icons/addImg.png" />
+            <text class='add-text'>选择图片</text>
+          </view>
+        </l-image-picker>
+      </view>
+      <view class="row"></view>
 
+      <l-input label="电话号码" type="number" placeholder="请填写电话号码" name="mobile" value='{{form_info}}' l-class="form-item" />
+      <l-input label="区域" placeholder="请填写区域" name="area" value='{{form_info}}' l-class="form-item" />
     </view>
-    <view class="row"></view>
+    <view  class="mid-wrap">
+      <view class="introduce-text">
+        <text>介绍</text>
+      </view>
+      <l-textarea placeholder="请填写个人介绍..." auto-height="{{false}}" l-class="worker-introduce" name="introduce" value='{{form_info}}' l-class="form-item introduce-value" show-row="{{false}}" />
+    </view>
 
-    <l-input label="电话号码" type="number" placeholder="请填写电话号码"  name="mobile" value='{{form_info}}'/>
-    <text style="font-size:28rpx; padding-left:25rpx;">介绍</text>
-    <l-textarea placeholder="请填写个人介绍..." auto-height="{{true}}" l-class="worker-introduce"   name="introduce" value='{{form_info}}'/>
-    <l-input label="区域" placeholder="请填写区域"  name="area" value='{{form_info}}'/>
-<!-- 本组件由原生Button进行的封装，所以导致 form-type 属性无法获取到表单组件值。此处建议使用原生Button组件。 -->
+    <!-- 本组件由原生Button进行的封装，所以导致 form-type 属性无法获取到表单组件值。此处建议使用原生Button组件。 -->
     <!-- <view class="btn">
       <l-button type="default" l-class="save" bind:lintap="onAddWorker">保存</l-button>
       <l-button type="default" l-class="claer" plain="true">清除</l-button>
     </view> -->
-    <view class="btn">
-        <button class="weui-btn" type="primary" formType="submit">保存</button>
+    <view class="btn bot-wrap">
+      <button class="weui-btn" type="primary" formType="submit">保存</button>
     </view>
   </form>
 </view>

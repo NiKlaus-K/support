@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "添加员工信息",
-  "usingComponents": {}
+  "usingComponents": {
+    "content-title": "../../../style/dist/content-title/index"
+  }
 }

@@ -1,9 +1,10 @@
 {
   "pages": [
-  
     "pages/index/index",
+  "pages/addWorker/addWorker",
+    
     "pages/index2/index",
-    "pages/addWorker/addWorker",
+    
    "pages/worker/worker",
   
     "pages/userConsole/userConsole",
@@ -19,7 +20,7 @@
     "pages/list/list"
   ],
   "window": {
-    "backgroundColor": "#F6F6F6",
+    "backgroundColor": "#F3F3F3",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "首页",

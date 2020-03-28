@@ -37,7 +37,7 @@ Page({
   getWorkerInfo(){
     const db = wx.cloud.database()
     // 查询当前用户所有的 counters
-    db.collection('worker').where({
+    db.collection('workers').where({
       _id: this.data.workerId
     }).get({
       success: res => {

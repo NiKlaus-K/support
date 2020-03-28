@@ -1,49 +1,85 @@
 /* pages/addworker/addworker.wxss */
 @import '/style/dist/step/index.wxss';
-.worker-introduce{
-  margin: auto;
+
+/* 设置页面背景颜色 */
+page {
+  background-color: #f3f3f3;
 }
+
+.container{
+  margin: 20rpx;
+  width: 95%;
+  padding: 10rpx 0;
+  box-sizing: border-box;
+}
+
+.form-item{
+  padding: 30rpx;
+}
+
+.top-wrap,.mid-wrap,.bot-wrap{
+  background: #fff;
+  border-radius: 20rpx;
+  margin: 0 0 20rpx;
+}
+
+/* 照片区域 */
 .photo{
   display: flex;
-   padding: 0;
-   margin: 10rpx 0;
 }
+
+.photo-text{
+  font-size:28rpx; 
+  padding-left:25rpx;
+  width: 145rpx;
+  line-height: 40px;
+}
+.add{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-icon {
+  height: 70rpx;
+  width: 70rpx;
+  margin-top: 10rpx;
+}
+
+.add-text {
+  margin-top: 6rpx;
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #bfbfbf;
+}
+
 /* 设置照片后的分割线 */
 .row{
   height: 1px;
   width: 100%;
   background-color: #f3f3f3;
 }
-/* 设置左侧“照片”字体大小 */
-.photo text{
-font-size:28rpx; 
-padding-left:25rpx;
- width: 100px;
- height: 50px;
- line-height: 50px;
-}
-/* 设置选中后的图片高度、宽度 */
-.photo image{
-height: 100rpx !important;
-width: 100rpx !important;
-}
-/* 设置图片选择器的样式 */
-.photo-picker{
-  height: 100rpx !important;
-  width: 100rpx !important;
-}
-.photo-item{
-   height: 100rpx !important;
-   width: 100rpx !important;
-}
+
 .btn{
   text-align: center;
   margin: 20rpx  20rpx;
 } 
-.save{
-  margin: 0  20rpx;
-}
-.clear{
 
-  margin: 0  20rpx;
+.introduce-text{
+  padding: 20rpx 30rpx 0 30rpx;
+}
+
+.introduce-text text{
+  font-size: 28rpx;
+  line-height: 32rpx;
+  color: #333;
+  padding-left: 25rpx;
+}
+
+.introduce-value{
+  border-radius: 10rpx;
+  padding: 15rpx 40rpx 30rpx 40rpx;
 }

@@ -16,7 +16,7 @@
 
 	<!-- ===========================提交评论区域========================================== -->
 	<view class="worker-comment">
-		<form bindsubmit="commentSubmit">
+		<form bindsubmit="commentSubmit" class="comment-form">
 			<l-textarea l-class="worker-comment-textarea" placeholder="点击评价..." auto-height="{{true}}" border="{{true}}" indicator="{{true}}" name="commentContent" value="{{commentContent}}" />
 			<view class="flex">
 				<l-rate size="38" score="{{score}}"/>
