@@ -20,7 +20,7 @@ page {
   z-index: 2;
   font-size: 28rpx;
   color: #fff;
-  margin: 20rpx 0 0 60rpx;
+  margin: 40rpx 0 0 60rpx;
   line-height: 48rpx;
 }
 
@@ -71,14 +71,16 @@ page {
 }
 /* 设置卡片内容区字体样式 */
 .avter-content{
-  font-size: 0.8rem;
-  /* 设置超过两行后隐藏 ——开始*/
+  font-size: 28rpx;
+  /* text-indent:2em;  段落排版--缩进 */
+  line-height:1.5em;  /*段落排版--行间距（行高）*/
+  letter-spacing:2rpx;   /*段落排版--中文字间距*/
+  /* 设置超过两行后隐藏*/
   overflow: hidden;
   -webkit-box-orient: vertical;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   text-overflow: ellipsis;
-  /* 设置超过两行后隐藏 ——结束*/
 }
 /* 设置tag标签居上显示 */
 l-tag{

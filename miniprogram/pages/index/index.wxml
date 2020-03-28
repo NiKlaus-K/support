@@ -30,12 +30,12 @@
           <view class="avter-content">
             {{ item.introduce}}
           </view>
-          <view class="avter-share-container">
+          <!-- <view class="avter-share-container">
             <view class="like-container">
               <l-icon name="comment" color="#666" size="26" />
               <view class="number">{{item.comment_num}} 评论</view>
             </view>
-          </view>
+          </view> -->
           <l-tag shape="circle" bg-color="#f3f3f3" font-color="#3963BC" slot="more" size="large">
             联系电话：{{ item.mobile }}
           </l-tag>
