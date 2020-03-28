@@ -1,17 +1,18 @@
 <!--index.wxml-->
 <view class="container">
   <view class="header">
+    <text class='header-text'>你好，<text class='header-name'>{{userInfo.nickName}}</text></text>
   </view>
   <view class="main">
     <!-- 搜索框 -->
     <view class="search">
-      <l-search-bar placeholder="搜索" show-cancel="{{false}}" shape="circle">
+      <l-search-bar placeholder="请输入姓名或区域" show-cancel="{{false}}" shape="circle" bind:linchange="onChangeSearch" bind:linclear="onClearSearch">
       </l-search-bar>
     </view>
     <!-- swiper区域 -->
-    <view class="swiper">
+    <view class="swiper ">
       <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class="swiper-home" circular="{{true}}" easing-function="default">
-        <block wx:for="{{imgUrls}}" wx:key="{{imgUrls.id}}">
+        <block wx:for="{{imgUrls}}" wx:key="id">
           <swiper-item>
             <image src="{{item}}" class="slide-image" width="355" height="100" />
           </swiper-item>
@@ -20,11 +21,11 @@
     </view>
 
     <!--开始------卡片列表 -->
-    <view wx:for="{{worker}}" wx:key="id">
+    <view wx:for="{{isSearch?searchWorkers:workers}}" wx:key="id">
       <!-- 设置路由，打开worker页面  暂时使用 存在点击时padding区域也变色的问题-->
-      <!-- hover-class="none"取消点击样式 -->
+      <!-- hover-class="none "取消点击样式 -->
       <view data-id="{{item._id}}" bindtap="click">
-        <l-card type="avatar" l-class="card" image="{{ item.photo }}" title="{{ item.name }}" describe="区域：{{ item.area }}">
+        <l-card type="avatar" l-class="card" image="{{item.photo}}" title="{{item.name}}" describe="区域：{{item.area}}">
           <!-- 此处为content -->
           <view class="avter-content">
             {{ item.introduce}}
@@ -32,7 +33,7 @@
           <view class="avter-share-container">
             <view class="like-container">
               <l-icon name="comment" color="#666" size="26" />
-              <view class="number">{{ item.comment_num }} 评论</view>
+              <view class="number">{{item.comment_num}} 评论</view>
             </view>
           </view>
           <l-tag shape="circle" bg-color="#f3f3f3" font-color="#3963BC" slot="more" size="large">
@@ -44,6 +45,6 @@
   </view>
   <!--结束------卡片列表 -->
   <!-- 需要使用 button 来授权登录 -->
-  <!-- <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+  <!-- <button wx:if="{{canIUse}} " open-type="getUserInfo " bindgetuserinfo="bindGetUserInfo ">授权登录</button>
   <view wx:else>请升级微信版本</view> -->
 </view>

@@ -23,7 +23,9 @@ Page({
     // 滑动动画时长
     duration: 1000,
     mobile:111254648,
-    worker: [],
+    isSearch: false,
+    workers: [],
+    searchWorkers: [],
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
 
@@ -54,53 +56,14 @@ Page({
     }),
     this.onGetOpenid()
     const db = wx.cloud.database()
-    // db.collection('comments').add({
-    //   data: {
-    //     commentContent: el.commentContent,
-    //     score: el.score,
-    //     // inputer:  this.userInfo.nickName,
-    //     // avatarUrl: this.userInfo.avatarUrl,
-    //     workerId: this.data.workerId,
-    //     replyId: this.data.replyId,
-    //     date: util.formatTime(new Date()),
-    //   },
-    //   success: res => {
-    //     // 在返回结果中会包含新创建的记录的 _id
-    //     this.setData({
-    //       commentContent: el.commentContent,
-    //       score: el.score,
-    //       workerId: this.data.workerId,
-    //       replyId: this.data.replyId
-    //     })
-    //     wx.showToast({
-    //       title: '评论成功',
-    //     })
-    //     console.log('[数据库] [新增评论] 成功，评论 _id: ', res._id)
-    //     // 保存后清空页面
-    //     this.setData({
-    //       form_info: '',
-    //       isClear: true
-    //     })
-    //   },
-    //   fail: err => {
-    //     wx.showToast({
-    //       icon: 'none',
-    //       title: '新增评论'
-    //     })
-    //     console.error('[数据库] [新增评论] 失败：', err)
-    //   }
-    // })
-    // =================================查询worker信息=================================
-    // const db = wx.cloud.database()
-    // 查询当前用户所有的 counters
-    db.collection('worker').where({
+    db.collection('workers').where({
       _openid: this.data.openid
     }).get({
       success: res => {
         this.setData({
           queryResult: JSON.stringify(res.data, null, 2),
           // 将获取到的数据库信息通过setData的方式赋给页面
-          'worker': res.data
+          workers: res.data
         })
         // console.log('[数据库] [查询记录] 成功: ', res.data)
       },
@@ -171,7 +134,7 @@ Page({
   // =================================路由跳转 带参=================================
   click:function(e){
     console.log(e);
-    var workerId = e.currentTarget.dataset.id
+    let workerId = e.currentTarget.dataset.id
     wx.navigateTo({
       url: '../worker/worker?title=worker&id=' + workerId
     })
@@ -185,6 +148,44 @@ Page({
     this.onLoad(); //重新加载onLoad()
     // 还需要在onLoad()函数里添加一下代码，用于完成load时停止下拉刷新动画效果
     // wx.stopPullDownRefresh() //手动刷新完成后停止下拉刷新动效
+  },
+  // 滚动到一定高度时触发
+  // onPageScroll: function(e){
+  //   console.log(e);
+  //   this.setData({
+  //     isFixed: e.scrollTop > 78 ? 1 : 0
+  //   })
+  // }
+  // 搜索框事件
+  onChangeSearch: function(e){
+    let searchValue = e.detail.value;
+    if (searchValue === ''){
+      this.setData({
+        isSearch: false
+      })
+    }else{
+      this.setData({
+        searchWorkers: []
+      })
+      let workerArr = this.data.workers;
+      let searchWorkerArr = []
+      workerArr.forEach(item => {
+        if (item.area.indexOf(searchValue) > -1) {
+          searchWorkerArr.push(item);
+        }
+        if (item.name.indexOf(searchValue) > -1) {
+          searchWorkerArr.push(item);
+        }
+      })
+      this.setData({
+        searchWorkers: searchWorkerArr,
+        isSearch: true
+      })
+    }
+  },
+  onClearSearch: function(){
+    this.setData({
+      isSearch: false
+    })
   }
-
 })

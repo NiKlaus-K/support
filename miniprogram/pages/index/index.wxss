@@ -14,6 +14,33 @@ page {
   box-sizing: border-box;
   z-index: 1;
 }
+
+.header-text{
+  position: absolute;
+  z-index: 2;
+  font-size: 28rpx;
+  color: #fff;
+  margin: 20rpx 0 0 60rpx;
+  line-height: 48rpx;
+}
+
+.header-name {
+  font-size: 32rpx;
+}
+
+/* 搜索栏固定顶部 */
+.fixed {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: 99;
+    margin: 0 auto;
+}
+
+/* ================搜索框区域================ */
+
+
 /* ================内容区域================= */
 .main {
   padding: 0 20rpx;
@@ -21,8 +48,6 @@ page {
   position: absolute;
   top: 100rpx;
 }
-/* ================搜索框区域================ */
-
 
 /* ================轮播图区域================ */
 .swiper {
