@@ -10,7 +10,9 @@ Page({
     worker: {},
     comments: [],
     commentContent: '',
-    score: ''
+    commentsCount: 0,
+    score: 0,
+    avgSroce: 0
   },
 
   onLoad: function (options) {
@@ -32,6 +34,10 @@ Page({
     this.getWorkerInfo()
     // 获取评论列表
     this.getCommentList();
+    // 获取评论数
+    this.getCommentCount();
+    // 获取评分平均分
+    this.getAvgSroce()
   },
   // 获取工作人员信息
   getWorkerInfo(){
@@ -79,6 +85,39 @@ Page({
       }
     })
   },
+  getCommentCount() {
+    wx.cloud.callFunction({
+      // 云函数名称
+      name: 'commentsCount',
+      // 传给云函数的参数
+      data: {
+        workerId: this.data.workerId
+      }
+    }).then(res => {
+      this.setData({
+        'commentsCount': res.result.total
+      })
+    }).catch(err => {
+      console.log(err)
+    })
+  },
+  getAvgSroce() {
+    wx.cloud.callFunction({
+      // 云函数名称
+      name: 'getAvgSroce',
+      // 传给云函数的参数
+      data: {
+        workerId: this.data.workerId
+      }
+    }).then(res => {
+      console.log(res)
+      // this.setData({
+      //   'avgSroce': res.result.total
+      // })
+    }).catch(err => {
+      console.log(err)
+    })
+  },
   /**
    * 用户点击右上角分享
    */
@@ -104,7 +143,7 @@ Page({
         // 在返回结果中会包含新创建的记录的 _id
         this.setData({
           commentContent: '',
-          score: ''
+          score: 0
         })
         wx.showToast({
           title: '评论成功',
@@ -131,7 +170,7 @@ Page({
   // 清空评论填写区域
   formReset(){
     this.setData({
-      score: '',
+      score: 0,
       commentContent : ''
     })
     console.log('form发生了reset事件')

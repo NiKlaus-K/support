@@ -133,7 +133,7 @@ Page({
   },
   // =================================路由跳转 带参=================================
   click:function(e){
-    console.log(e);
+    // console.log(e);
     let workerId = e.currentTarget.dataset.id
     wx.navigateTo({
       url: '../worker/worker?title=worker&id=' + workerId
