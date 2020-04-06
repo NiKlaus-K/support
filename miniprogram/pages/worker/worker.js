@@ -175,8 +175,9 @@ Page({
   },
   // 添加下拉刷新（钩子函数）
   onPullDownRefresh() {
-    this.getWorkerInfo()
+    this.getWorkerInfo();
     this.getCommentList();
+    this.getCommentCount();
     // 还需要在函数里添加一下代码，用于完成加载后停止下拉刷新动画效果
     wx.stopPullDownRefresh() //手动刷新完成后停止下拉刷新动效
   },
