@@ -10,18 +10,18 @@
       </l-search-bar>
     </view>
     <!-- swiper区域 -->
-    <view class="swiper ">
+    <view class="swiper">
       <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class="swiper-home" circular="{{true}}" easing-function="default">
-        <block wx:for="{{imgUrls}}" wx:key="id">
+        <block wx:for="{{imgUrls}}" wx:key="*this">
           <swiper-item>
-            <image src="{{item}}" class="slide-image" width="355" height="100" />
+            <image src="{{item}}" mode="widthFix" class="slide-image"/>
           </swiper-item>
         </block>
       </swiper>
     </view>
 
     <!--开始------卡片列表 -->
-    <view wx:for="{{isSearch?searchWorkers:workers}}" wx:key="id">
+    <view wx:for="{{isSearch?searchWorkers:workers}}" wx:key="_id">
       <!-- 设置路由，打开worker页面  暂时使用 存在点击时padding区域也变色的问题-->
       <!-- hover-class="none "取消点击样式 -->
       <view data-id="{{item._id}}" bindtap="click">

@@ -3,12 +3,37 @@
 @import '/images/icons/iconfont.wxss';
 @import '/style/dist/step/index.wxss';
 
+page{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*
+ 主题颜色 通过变量来实现 
+ 1 less中存在变量这个只是
+ 2 原生的css和wxss也是支持变量的
+ */
+page{
+  /* 定义主题颜色 */
+  --themeColor: #3963bc;
+  /* 定义同意字体大小 
+     假设设计稿大小为375px 
+     1px = 2rpx
+     14px = 28rpx
+  */
+  font-size: 28rpx;
+  /* 设置页面背景颜色 */
+  background-color: #f7f7f7;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 /* 设置主内容区域 */
 
 .container {
   /* min-height: 100vh; */
   width: 100%;
-  background-color: #f3f3f3;
   padding-bottom: 60rpx;
 }
 
@@ -22,7 +47,7 @@
 /* 分割线 */
 .divLine {
     margin: 0;
-    background: #e4e4e4;
+    background: #f6f6f6;
     width: 100%;
     height: 3rpx;
 }

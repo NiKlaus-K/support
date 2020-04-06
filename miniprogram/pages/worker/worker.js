@@ -12,7 +12,8 @@ Page({
     commentContent: '',
     commentsCount: 0,
     score: 0,
-    avgSroce: 0
+    avgScore: 0,
+    avatarNone: "../../../images/dist/avatar-none.jpg"
   },
 
   onLoad: function (options) {
@@ -36,8 +37,6 @@ Page({
     this.getCommentList();
     // 获取评论数
     this.getCommentCount();
-    // 获取评分平均分
-    this.getAvgSroce()
   },
   // 获取工作人员信息
   getWorkerInfo(){
@@ -68,12 +67,13 @@ Page({
     // 查询当前用户所有的评论
     db.collection('comments').where({
       workerId: this.data.workerId
-    }).get({
+    }).orderBy('createDate', 'desc').get({
       success: res => {
         this.setData({
           'comments': res.data
-        })
-        console.log(workerId)
+        });
+        
+        // console.log(workerId)
         console.log('[comments] [查询全部评论] 成功: ', res.data)
       },
       fail: err => {
@@ -96,35 +96,31 @@ Page({
     }).then(res => {
       this.setData({
         'commentsCount': res.result.total
+      },()=>{
+        // 获取评分平均分
+        this.getAvgScore()
       })
     }).catch(err => {
-      console.log(err)
+      console.log(err);
     })
   },
-  getAvgSroce() {
-    wx.cloud.callFunction({
-      // 云函数名称
-      name: 'getAvgSroce',
-      // 传给云函数的参数
-      data: {
-        workerId: this.data.workerId
-      }
-    }).then(res => {
-      console.log(res)
-      // this.setData({
-      //   'avgSroce': res.result.total
-      // })
-    }).catch(err => {
-      console.log(err)
+  getAvgScore() {
+    let scores = 0;
+    for(let i = 0;i < this.data.comments.length; i++){
+      scores += this.data.comments[i].score;
+    }
+    let avgScore = 0;
+    if(this.data.commentsCount == 0){
+      avgScore = 0;
+    } else {
+      avgScore = scores/this.data.commentsCount;
+      avgScore = avgScore.toFixed(1);
+    }
+    this.setData({
+      avgScore: avgScore
     })
   },
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-  // 提交评论——开始
+  // 提交评论
   commentSubmit: function (e) {
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
     const db = wx.cloud.database()
@@ -132,12 +128,13 @@ Page({
     db.collection('comments').add({
       data: {
         commentContent: el.commentContent,
-        score: el.score,
+        score: this.data.score,
         // inputer:  this.userInfo.nickName,
         // avatarUrl: this.userInfo.avatarUrl,
         workerId: this.data.workerId,
         replyId: this.data.replyId,
-        date: util.formatTime(new Date()),
+        date: util.formatDate(new Date()),
+        createDate: new Date()
       },
       success: res => {
         // 在返回结果中会包含新创建的记录的 _id
@@ -149,6 +146,7 @@ Page({
           title: '评论成功',
         })
         this.getCommentList();
+        this.getCommentCount();
         console.log('[数据库] [新增评论] 成功，评论 _id: ', res._id)
         // 保存后清空页面
         this.setData({
@@ -181,5 +179,10 @@ Page({
     this.getCommentList();
     // 还需要在函数里添加一下代码，用于完成加载后停止下拉刷新动画效果
     wx.stopPullDownRefresh() //手动刷新完成后停止下拉刷新动效
+  },
+  scoreChange: function (e) {
+    this.setData({
+      score: e.detail.score
+   })
   }
 })

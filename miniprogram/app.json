@@ -2,8 +2,7 @@
   "pages": [
     "pages/index/index",
     
-   "pages/worker/worker",
-  
+    "pages/worker/worker",
   "pages/addWorker/addWorker",
     
     "pages/index2/index",
