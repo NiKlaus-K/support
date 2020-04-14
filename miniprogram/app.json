@@ -40,23 +40,29 @@
         "selectedIconPath": "images/icons/home-active.png",
         "text": "首页"
       },
-      
       {
         "index": 2,
+        "pagePath": "pages/user/user",
+        "iconPath": "images/icons/user.png",
+        "selectedIconPath": "images/icons/user-active.png",
+        "text": "讨论区"
+      },
+      {
+        "index": 3,
         "pagePath": "pages/user/user",
         "iconPath": "images/icons/user.png",
         "selectedIconPath": "images/icons/user-active.png",
         "text": "我的"
       },
       {
-        "index": 3,
+        "index": 4,
         "pagePath": "pages/addWorker/addWorker",
         "iconPath": "images/icons/home.png",
         "selectedIconPath": "images/icons/home-active.png",
         "text": "添加信息"
       },
       {
-        "index": 4,
+        "index": 5,
         "pagePath": "pages/index2/index",
         "iconPath": "images/icons/home.png",
         "selectedIconPath": "images/icons/home-active.png",

@@ -4,7 +4,6 @@ Page({
   data: {
     avatarUrl: './user-unlogin.png',
     userInfo: {},
-    _openid: '',
     logged: false,
     takeSession: false,
     requestResult: '',
@@ -25,8 +24,7 @@ Page({
     mobile:111254648,
     isSearch: false,
     workers: [],
-    searchWorkers: [],
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    searchWorkers: []
   },
 
   onLoad: function() {
@@ -46,9 +44,9 @@ Page({
           wx.getUserInfo({
             success: res => {
               this.setData({
-                avatarUrl: res.userInfo.avatarUrl,
                 userInfo: res.userInfo
               })
+              wx.setStorageSync('userInfo', res.userInfo)
             }
           })
         }
@@ -56,9 +54,7 @@ Page({
     }),
     this.onGetOpenid()
     const db = wx.cloud.database()
-    db.collection('workers').where({
-      _openid: this.data.openid
-    }).get({
+    db.collection('workers').get({
       success: res => {
         this.setData({
           queryResult: JSON.stringify(res.data, null, 2),
@@ -76,19 +72,7 @@ Page({
       }
     })
   },
-  bindGetUserInfo (e) {
-    console.log(e.detail.userInfo)
-  },
-  // =================================获取用户基本信息=================================
-  onGetUserInfo: function(e) {
-    if (!this.logged && e.detail.userInfo) {
-      this.setData({
-        logged: true,
-        avatarUrl: e.detail.userInfo.avatarUrl,
-        userInfo: e.detail.userInfo
-      })
-    }
-  },
+  
   // ===========================获取用户openid================================
   onGetOpenid: function() {
     // 调用云函数
@@ -98,9 +82,7 @@ Page({
       success: res => {
         console.log('[云函数] [login] user openid: ', res.result.openid)
         app.globalData.openid = res.result.openid
-        this.setData({
-          _openid: app.globalData.openid
-        })
+        wx.setStorageSync('openid', res.result)
       },
       fail: err => {
         console.error('[云函数] [login] 调用失败', err)

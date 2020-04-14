@@ -20,7 +20,7 @@
 .worker-container {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
     flex-wrap: nowrap;
     width: 100%;
     box-shadow: 0 4rpx 20rpx 0 rgba(212, 217, 223, 0.5);
@@ -33,7 +33,7 @@
 
 /* 左上角照片区域 */
 .worker-photo {
-  width:300rpx;
+  width:240rpx;
   height: 300rpx;
   border-radius: 20rpx;
 }
@@ -42,24 +42,26 @@
 .worker-info {
     padding-left: 40rpx;
     position: relative;
+    flex: 2;
 }
 
 .worker-name {
-    font-size: 14pt;
+    font-size: 12pt;
     color: #363d4d;
     font-weight: 600;
     display: block;
 }
 
 .worker-mobile {
-    font-size: 11pt;
+    font-size: 10pt;
     color: #8f939c;
     margin-top: 10rpx;
 }
 
 .worker-area {
-  font-size: 11pt;
+  font-size: 10pt;
   color: #8f939c;
+  margin-top: 10rpx;
 }
 
 .top-worker-comment{
@@ -237,7 +239,7 @@ h2 {
 .comment-name {
     font-size: 12pt;
     color: #355eb6;
-    margin-left: 10px;
+    /* margin-left: 10px; */
     align-items: flex-start;
 }
 
@@ -274,10 +276,9 @@ h2 {
 }
 .comment-item-none{
     margin: auto;
-}
-.comment-item-none text{
     color: #888;
     text-align: center;
+    line-height: 100rpx;
 }
 
 
@@ -312,4 +313,28 @@ h2 {
     margin-bottom: 5px;
     font-size: 10pt;
     color: #888;
+}
+
+
+.phoneCall{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #eeeeee;
+    height: 100rpx;
+    text-align: center;
+    line-height: 100rpx;
+    background-color: #fff;
+}
+
+.phoneCall-btn{
+    height: 100%;
+    width: 100%;
+    background-color: #3963bc;
+    color: #fff;
+    font-size: 10pt;
+    text-align: center;
+    line-height: 100rpx;
+    position: relative;
+    display: inline-block;
 }

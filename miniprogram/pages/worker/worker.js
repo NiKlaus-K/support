@@ -13,30 +13,46 @@ Page({
     commentsCount: 0,
     score: 0,
     avgScore: 0,
-    avatarNone: "../../../images/dist/avatar-none.jpg"
+    avatarNone: "../../../images/dist/avatar-none.jpg",
+    userInfo:{},
+    openid:''
   },
+  /*
+   * 生命周期函数--监听页面加载
+   */
 
   onLoad: function (options) {
     this.setData({
       title: options.title
     })
-  },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-
-  onLoad: function (options) {
     // console.log(options);//就是一个接收传递过来的参数的对象
     // 将获取到的人员ID赋值到当前页面
     this.setData({
       'workerId' : options.id //（接受url传参，不限制只能传递id变量名，可以传递多个变量名值）
     })
+    // 获取用户信息
+    this.getUserInfo();
     // 获取工作人员信息
-    this.getWorkerInfo()
+    this.getWorkerInfo();
     // 获取评论列表
     this.getCommentList();
     // 获取评论数
     this.getCommentCount();
+  },
+  // 获取用户信息
+  getUserInfo(){
+    let userInfo = wx.getStorageSync('userInfo')
+    if(userInfo){
+      this.setData({
+        userInfo: userInfo
+      })
+    }
+    let openid = wx.getStorageSync('openid').openid
+    if(openid){
+      this.setData({
+        openid: openid
+      })
+    }
   },
   // 获取工作人员信息
   getWorkerInfo(){
@@ -134,7 +150,11 @@ Page({
         workerId: this.data.workerId,
         replyId: this.data.replyId,
         date: util.formatDate(new Date()),
-        createDate: new Date()
+        createDate: new Date(),
+        commentatorOpenid: this.data.openid,
+        commentatorNickName: this.data.userInfo.nickName,
+        commentatorAvatar: this.data.userInfo.avatarUrl,
+        commentatorCity: this.data.userInfo.city
       },
       success: res => {
         // 在返回结果中会包含新创建的记录的 _id
@@ -185,5 +205,8 @@ Page({
     this.setData({
       score: e.detail.score
    })
+  },
+  makePhoneCall: function() {
+    console.log("立即联系")
   }
 })

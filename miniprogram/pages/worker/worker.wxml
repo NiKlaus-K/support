@@ -1,5 +1,4 @@
 <!-- pages/worker/worker.wxml -->
-<view style="text-align:center">{{title}}</view>
 <view class="container">
   <!-- ===========================工作人员基本信息区域========================================== -->
   <view class="worker-container">
@@ -44,18 +43,18 @@
     <!-- ===========================评论列表区域========================================== -->
     <view class="comment-list">
       <view class="comment-title">
-        <view class="comment-title-part1">全部评论</view>
+        <view class="comment-title-part1">全部评价</view>
         <view class="comment-title-part2">({{commentsCount}})</view>
       </view>
       <!-- 选项卡 -->
       <view class="comment-item" wx:for="{{comments}}" wx:key="_id" wx:for-item="item" data-id="{{item._id}}">
         <view class="comment-item-title">
           <view class="comment-item-title-part1">
-            <l-avatar src="{{item.avatar?item.avatar:avatarNone}}" mode="aspectFit" size="80" />
+            <l-avatar src="{{item.commentatorAvatar?item.commentatorAvatar:avatarNone}}" mode="aspectFit" size="80" />
           </view>
           <view class="comment-item-title-part2">
             <view class="comment-item-title-part2-top">
-              <view class="comment-name">{{ item.name }}</view>
+              <view class="comment-name">{{ item.commentatorNickName }}</view>
               <view class="comment-date">{{ item.date }}</view>
             </view>
             <view class="comment-item-part2-score">
@@ -73,13 +72,12 @@
         </view>
         <view class="divLine"></view>
       </view>
-      <view class="comment-item-none">
-        <text>
+      <view class="comment-item-none" wx:if="{{comments.length <= 0}}">
           暂无更多数据
-        </text>
       </view>
     </view>
-    <!-- ===========================评论列表区域====结束===================================== -->
-
   </view>
 </view>
+<view class="phoneCall">
+      <view class="phoneCall-btn" bindtap="makePhoneCall">立即联系</view>
+  </view>
