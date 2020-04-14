@@ -3,7 +3,7 @@
 <l-grid row-num="{{ size }}" l-class="l-class">
   <l-grid-item
     wx:for="{{ urls }}" 
-    wx:key="{{ index }}"
+    wx:key="index"
     key="{{ index }}"
     slot="{{ index }}">
     <view class="item l-item-class" catchtap="onPreviewTap" data-index="{{ index }}">
