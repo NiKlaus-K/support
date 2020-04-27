@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-     "l-rate": "../../../style/dist/rate/index"
+     "l-rate": "../../../style/dist/rate/index",
+     "dialog": "../../../style/dist/dialog/index"
   },
   "navigationBarTitleText": "工作人员信息",
   "enablePullDownRefresh": true

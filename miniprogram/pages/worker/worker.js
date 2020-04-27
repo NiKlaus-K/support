@@ -31,7 +31,7 @@ Page({
       'workerId' : options.id //（接受url传参，不限制只能传递id变量名，可以传递多个变量名值）
     })
     // 获取用户信息
-    this.getUserInfo();
+    this.onGotUserInfo();
     // 获取工作人员信息
     this.getWorkerInfo();
     // 获取评论列表
@@ -40,19 +40,24 @@ Page({
     this.getCommentCount();
   },
   // 获取用户信息
-  getUserInfo(){
-    let userInfo = wx.getStorageSync('userInfo')
-    if(userInfo){
-      this.setData({
-        userInfo: userInfo
-      })
-    }
-    let openid = wx.getStorageSync('openid').openid
-    if(openid){
-      this.setData({
-        openid: openid
-      })
-    }
+  onGotUserInfo: function (e){
+    const that = this;
+    wx.cloud.callFunction({
+      name:"login",
+      success: res=>{
+        console.log("云函数【login】调用成功！",res);
+        that.setData({
+          openid: res.result.openid,
+          userInfo: e.detail.userInfo
+        })
+        that.data.userInfo.openid = that.data.openid    
+        console.log("userInfo:",that.data.userInfo)
+        wx.setStorageSync('userInfo', that.data.userInfo)
+      },
+      fail: err=>{
+        console.log("云函数【login】调用失败！",err)
+      }
+    })
   },
   // 获取工作人员信息
   getWorkerInfo(){

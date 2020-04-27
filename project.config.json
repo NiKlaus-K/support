@@ -57,6 +57,13 @@
 					"id": -1,
 					"name": "页面——我的",
 					"pathName": "pages/user/user",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/worker/worker",
+					"pathName": "pages/worker/worker",
 					"scene": null
 				}
 			]
