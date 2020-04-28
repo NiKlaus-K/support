@@ -29,30 +29,7 @@ Page({
 
   onLoad: function() {
     // ===========================手动刷新完成后停止下拉刷新动效=======================================
-    wx.stopPullDownRefresh() 
-    if (!wx.cloud) {
-      wx.redirectTo({
-        url: '../chooseLib/chooseLib',
-      })
-      return
-    }
-    // =================================获取用户信息=================================
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              this.setData({
-                userInfo: res.userInfo
-              })
-              wx.setStorageSync('userInfo', res.userInfo)
-            }
-          })
-        }
-      }
-    }),
-    this.onGetOpenid()
+    wx.stopPullDownRefresh()
     const db = wx.cloud.database()
     db.collection('workers').get({
       success: res => {
@@ -61,7 +38,6 @@ Page({
           // 将获取到的数据库信息通过setData的方式赋给页面
           workers: res.data
         })
-        // console.log('[数据库] [查询记录] 成功: ', res.data)
       },
       fail: err => {
         wx.showToast({
@@ -69,26 +45,6 @@ Page({
           title: '列表获取失败，请联系管理员'
         })
         console.error('[数据库] [查询记录] 失败：', err)
-      }
-    })
-  },
-  
-  // ===========================获取用户openid================================
-  onGetOpenid: function() {
-    // 调用云函数
-    wx.cloud.callFunction({
-      name: 'login',
-      data: {},
-      success: res => {
-        console.log('[云函数] [login] user openid: ', res.result.openid)
-        app.globalData.openid = res.result.openid
-        wx.setStorageSync('openid', res.result)
-      },
-      fail: err => {
-        console.error('[云函数] [login] 调用失败', err)
-        wx.navigateTo({
-          url: '../deployFunctions/deployFunctions',
-        })
       }
     })
   },

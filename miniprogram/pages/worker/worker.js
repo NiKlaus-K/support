@@ -14,6 +14,7 @@ Page({
     score: 0,
     avgScore: 0,
     avatarNone: "../../../images/dist/avatar-none.jpg",
+    isDisplay: true,
     userInfo:{},
     openid:''
   },
@@ -30,29 +31,68 @@ Page({
     this.setData({
       'workerId' : options.id //（接受url传参，不限制只能传递id变量名，可以传递多个变量名值）
     })
-    // 获取用户信息
-    this.onGotUserInfo();
+    // 获取用户openid
+    this.onGetUserOpenid();
     // 获取工作人员信息
     this.getWorkerInfo();
     // 获取评论列表
     this.getCommentList();
     // 获取评论数
     this.getCommentCount();
+    // 查看是否授权
+    const that = this
+    wx.getSetting({
+      success (res){
+        if (res.authSetting['scope.userInfo']  === false) {
+          // 未授权
+          that.setData({
+            isDisplay: false
+          })
+        } else if(res.authSetting['scope.userInfo']  === true) {
+          // 已经授权
+          wx.getUserInfo({
+            success: function(res) {
+              that.setData({
+                userInfo: res.userInfo,
+                isDisplay: true
+              })
+              that.data.userInfo.openid = that.data.openid
+              wx.setStorageSync('userInfo', that.data.userInfo)
+            }
+          })
+        } else {
+          // res.authSetting['scope.userInfo']不存在的时候
+          that.setData({
+            isDisplay: false
+          })
+        }
+      }
+    })
   },
   // 获取用户信息
-  onGotUserInfo: function (e){
-    const that = this;
+  bindGetUserInfo: function (e){
+    const that = this
+    wx.getUserInfo({
+      success: function(res) {
+        that.setData({
+          userInfo: res.userInfo,
+          isDisplay: true
+        })
+        that.data.userInfo.openid = that.data.openid
+        wx.setStorageSync('userInfo', that.data.userInfo)
+      }
+    })
+  },
+  onGetUserOpenid(){
     wx.cloud.callFunction({
       name:"login",
       success: res=>{
         console.log("云函数【login】调用成功！",res);
-        that.setData({
-          openid: res.result.openid,
-          userInfo: e.detail.userInfo
+        this.setData({
+          openid: res.result.openid
         })
-        that.data.userInfo.openid = that.data.openid    
-        console.log("userInfo:",that.data.userInfo)
-        wx.setStorageSync('userInfo', that.data.userInfo)
+        this.data.userInfo.openid = this.data.openid
+        wx.setStorageSync('userInfo', this.data.userInfo.openid)
       },
       fail: err=>{
         console.log("云函数【login】调用失败！",err)
@@ -143,7 +183,7 @@ Page({
   },
   // 提交评论
   commentSubmit: function (e) {
-    console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    // console.log('form发生了submit事件，携带数据为：', e.detail.value)
     const db = wx.cloud.database()
     let el = e.detail.value
     db.collection('comments').add({
@@ -196,7 +236,6 @@ Page({
       score: 0,
       commentContent : ''
     })
-    console.log('form发生了reset事件')
   },
   // 添加下拉刷新（钩子函数）
   onPullDownRefresh() {

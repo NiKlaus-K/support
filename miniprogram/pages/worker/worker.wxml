@@ -37,7 +37,8 @@
         <view class="worker-comment-add-btn">
           <l-rate size="38" score="{{score}}" bind:linChange="scoreChange" />
           <view class="comment-submit">
-            <button size="mini" form-type="submit">评价</button>
+            <button class="comment-login-btn" wx:if="{{!isDisplay}}" size="mini" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">点击登录</button>
+            <button class="comment-submit-btn" wx:if="{{isDisplay}}" size="mini" form-type="submit" >评价</button>
           </view>
         </view>
       </form>

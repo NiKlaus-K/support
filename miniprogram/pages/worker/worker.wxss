@@ -135,9 +135,17 @@
 }
 
 .comment-submit button{
-  color: white;
-  background-color: #3963bc;
   border-radius: 0.8rem;
+}
+
+.comment-submit-btn{
+    background-color: #3963bc;
+    color: #fff;
+}
+
+.comment-login-btn{
+    background-color: #fafafa;
+    color: #3963bc;
 }
 
 /* ============================评论列表区域============================ */
@@ -338,3 +346,5 @@ h2 {
     position: relative;
     display: inline-block;
 }
+
+
