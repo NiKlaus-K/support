@@ -40,7 +40,7 @@ page{
 /* =================分割区域样式=====开始================== */
 /* 分割块 */
 .divBlank {
-  background-color: #fafbfd;
+  background-color: #f6f6f6;
   height: 0.3rem;
   width: 120%;
 }

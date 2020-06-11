@@ -8,9 +8,9 @@
     justify-content: center;
     /* 换行 */
     flex-wrap: wrap;
-     margin: 20rpx;
-    width: 95%;
-    padding: 10rpx 0;
+     /* margin: 20rpx; */
+    width: 100%;
+    /* padding: 10rpx 0; */
 }
 
 .flex {
@@ -24,8 +24,7 @@
     flex-wrap: nowrap;
     width: 100%;
     box-shadow: 0 4rpx 20rpx 0 rgba(212, 217, 223, 0.5);
-    border-radius: 10px;
-    margin-bottom: 20rpx;
+    /* border-radius: 10px; */
     padding: 20rpx;
     box-sizing: border-box;
     background: #fff;
@@ -50,6 +49,21 @@
     color: #363d4d;
     font-weight: 600;
     display: block;
+}
+.top-worker-like {
+    font-size: 8pt;
+    color: #3963BC;
+    background-color: #f3f3f3;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 30rpx;
+    padding:6rpx 20rpx;
+    font-weight: 500;
+}
+.top-worker-like-icon {
+    display: inline-block;
+    margin-right: 15rpx;
 }
 
 .worker-mobile {
@@ -89,7 +103,6 @@
   font-size: 28rpx;
   color: #333;
   border-radius: 2px;
-  margin-bottom: 20rpx;
   padding: 20rpx;
   box-shadow: 0 4rpx 20rpx 0 rgba(212, 217, 223, 0.5);
 }
@@ -104,7 +117,6 @@
     background-color: #fff;
     box-shadow: 0 4rpx 20rpx 0 rgba(212, 217, 223, 0.5);
     border-radius: 2px;
-    margin-bottom: 20rpx;
     padding: 20rpx;
 } 
 
@@ -180,8 +192,8 @@ h2 {
 }
 .comment-title-part1{
     color: #333;
-    font-size: 11pt;
-    font-weight: 600;
+    font-size: 10pt;
+    font-weight: 500;
 }
 .comment-title-part2{
     font-size: 10pt;
@@ -211,11 +223,7 @@ h2 {
     justify-content: space-between;
     /* 换行 */
     flex-wrap: nowrap;
-}
-
-.divLine {
-    margin: 10rpx 0 10rpx 0;
-}    
+} 
 
 /* 评论顶部*/
 .comment-item-title{
@@ -224,6 +232,7 @@ h2 {
     justify-content: flex-start;
     flex-wrap: nowrap;
     padding: 10rpx 0;
+    margin-top: 20rpx;
 }
 
 /* 评论人头像and姓名 */
@@ -278,9 +287,10 @@ h2 {
 /* 评论内容 */
 
 .comment-content {
-    font-size: 11pt;
+    font-size: 10pt;
     color: #343434;
     padding: 0px 5px;
+    margin: 0 10rpx 20rpx 90rpx;
 }
 .comment-item-none{
     margin: auto;
