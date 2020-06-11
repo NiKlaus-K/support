@@ -15,8 +15,8 @@ Page({
     avgScore: 0,
     avatarNone: "../../../images/dist/avatar-none.jpg",
     isDisplay: true,
-    userInfo:{},
-    openid:''
+    userInfo: {},
+    openid: ''
   },
   /*
    * 生命周期函数--监听页面加载
@@ -29,29 +29,66 @@ Page({
     // console.log(options);//就是一个接收传递过来的参数的对象
     // 将获取到的人员ID赋值到当前页面
     this.setData({
-      'workerId' : options.id //（接受url传参，不限制只能传递id变量名，可以传递多个变量名值）
+      'workerId': options.id //（接受url传参，不限制只能传递id变量名，可以传递多个变量名值）
     })
-    // 获取用户openid
-    this.onGetUserOpenid();
+    try {
+      let userInfo = wx.getStorageSync('userInfo')
+      if (userInfo) {
+        if (userInfo.length > 1) {
+          this.setData({
+            userInfo: userInfo,
+            openid: userInfo.openid
+          })
+        } else {
+          // 获取用户信息
+          this.onGetUserInnfo();
+          // 获取用户openid
+          this.onGetUserOpenid();
+        }
+      } else {
+        // 获取用户信息
+        this.onGetUserInnfo();
+        // 获取用户openid
+        this.onGetUserOpenid();
+      }
+    } catch (e) {
+      console.log(e)
+    }
     // 获取工作人员信息
     this.getWorkerInfo();
     // 获取评论列表
     this.getCommentList();
     // 获取评论数
     this.getCommentCount();
+  },
+  // 获取用户信息
+  bindGetUserInfo: function (e) {
+    const that = this
+    wx.getUserInfo({
+      success: function (res) {
+        that.setData({
+          userInfo: res.userInfo,
+          isDisplay: true
+        })
+        that.data.userInfo.openid = that.data.openid
+        wx.setStorageSync('userInfo', that.data.userInfo)
+      }
+    })
+  },
+  onGetUserInnfo() {
     // 查看是否授权
     const that = this
     wx.getSetting({
-      success (res){
-        if (res.authSetting['scope.userInfo']  === false) {
+      success(res) {
+        if (res.authSetting['scope.userInfo'] === false) {
           // 未授权
           that.setData({
             isDisplay: false
           })
-        } else if(res.authSetting['scope.userInfo']  === true) {
+        } else if (res.authSetting['scope.userInfo'] === true) {
           // 已经授权
           wx.getUserInfo({
-            success: function(res) {
+            success: function (res) {
               that.setData({
                 userInfo: res.userInfo,
                 isDisplay: true
@@ -69,38 +106,24 @@ Page({
       }
     })
   },
-  // 获取用户信息
-  bindGetUserInfo: function (e){
-    const that = this
-    wx.getUserInfo({
-      success: function(res) {
-        that.setData({
-          userInfo: res.userInfo,
-          isDisplay: true
-        })
-        that.data.userInfo.openid = that.data.openid
-        wx.setStorageSync('userInfo', that.data.userInfo)
-      }
-    })
-  },
-  onGetUserOpenid(){
+  onGetUserOpenid() {
     wx.cloud.callFunction({
-      name:"login",
-      success: res=>{
-        console.log("云函数【login】调用成功！",res);
+      name: "login",
+      success: res => {
+        console.log("云函数【login】调用成功！", res);
         this.setData({
           openid: res.result.openid
         })
         this.data.userInfo.openid = this.data.openid
-        wx.setStorageSync('userInfo', this.data.userInfo.openid)
+        wx.setStorageSync('userInfo', this.data.userInfo)
       },
-      fail: err=>{
-        console.log("云函数【login】调用失败！",err)
+      fail: err => {
+        console.log("云函数【login】调用失败！", err)
       }
     })
   },
   // 获取工作人员信息
-  getWorkerInfo(){
+  getWorkerInfo() {
     const db = wx.cloud.database()
     // 查询当前用户所有的 counters
     db.collection('workers').where({
@@ -133,7 +156,7 @@ Page({
         this.setData({
           'comments': res.data
         });
-        
+
         // console.log(workerId)
         console.log('[comments] [查询全部评论] 成功: ', res.data)
       },
@@ -157,7 +180,7 @@ Page({
     }).then(res => {
       this.setData({
         'commentsCount': res.result.total
-      },()=>{
+      }, () => {
         // 获取评分平均分
         this.getAvgScore()
       })
@@ -167,14 +190,14 @@ Page({
   },
   getAvgScore() {
     let scores = 0;
-    for(let i = 0;i < this.data.comments.length; i++){
+    for (let i = 0; i < this.data.comments.length; i++) {
       scores += this.data.comments[i].score;
     }
     let avgScore = 0;
-    if(this.data.commentsCount == 0){
+    if (this.data.commentsCount == 0) {
       avgScore = 0;
     } else {
-      avgScore = scores/this.data.commentsCount;
+      avgScore = scores / this.data.commentsCount;
       avgScore = avgScore.toFixed(1);
     }
     this.setData({
@@ -231,10 +254,10 @@ Page({
     this.formReset();
   },
   // 清空评论填写区域
-  formReset(){
+  formReset() {
     this.setData({
       score: 0,
-      commentContent : ''
+      commentContent: ''
     })
   },
   // 添加下拉刷新（钩子函数）
@@ -248,9 +271,9 @@ Page({
   scoreChange: function (e) {
     this.setData({
       score: e.detail.score
-   })
+    })
   },
-  makePhoneCall: function() {
+  makePhoneCall: function () {
     console.log("立即联系")
   }
 })
