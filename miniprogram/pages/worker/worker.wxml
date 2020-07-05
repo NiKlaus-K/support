@@ -13,10 +13,10 @@
 		<view class="worker-info">
 			<view class="worker-name">
 				<p>{{ worker.name }}</p>
-				<view class="top-worker-like">
+				<!-- <view class="top-worker-like">
 					<l-icon name="like" size="24" l-class="top-worker-like-icon"/>
 					<text>{{ worker.like}}</text>
-				</view>
+				</view> -->
 			</view>
 			<view class="worker-mobile">
 				<p>联系电话：{{ worker.mobile }}</p>
@@ -93,6 +93,6 @@
 		</view>
 	</view>
 </view>
-<view class="phoneCall">
+<!-- <view class="phoneCall">
 	<view class="phoneCall-btn" bindtap="makePhoneCall">立即联系</view>
-</view>
+</view> -->
