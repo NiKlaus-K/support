@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container">
   <view class="header">
-    <text class='header-text'>你好，<text class='header-name'>{{userInfo.nickName}}</text></text>
+    <text class='header-text'>您好 ！<text class='header-name'>{{userInfo.nickName}}</text></text>
   </view>
   <view class="main">
     <!-- 搜索框 -->

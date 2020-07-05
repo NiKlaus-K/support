@@ -10,3 +10,44 @@
 
 - [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
 
+待启用tabBar
+"tabBar": {
+    "color": "#c3c3c3",
+    "selectedColor": "#343434",
+    "borderStyle": "white",
+    "backgroundColor": "#ffffff",
+     
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/icons/home.png",
+        "selectedIconPath": "images/icons/home-active.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "iconPath": "images/icons/user.png",
+        "selectedIconPath": "images/icons/user-active.png",
+        "text": "讨论区"
+      },
+
+      {
+        "pagePath": "pages/addWorker/addWorker",
+        "iconPath": "images/icons/home.png",
+        "selectedIconPath": "images/icons/home-active.png",
+        "text": "添加信息"
+      },
+      {
+        "pagePath": "pages/index2/index",
+        "iconPath": "images/icons/home.png",
+        "selectedIconPath": "images/icons/home-active.png",
+        "text": "demo"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "iconPath": "images/icons/user.png",
+        "selectedIconPath": "images/icons/user-active.png",
+        "text": "我的"
+      }
+    ]
+  },

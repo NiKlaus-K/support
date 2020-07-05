@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "l-segment": "../../../style/dist/segment/index",
-    "l-segment-item": "../../../style/dist/segment-item/index"
-  }
-}

@@ -15,7 +15,6 @@
     "pages/deployFunctions/deployFunctions",
     "pages/chooseLib/chooseLib",
     "pages/openapi/openapi",
-    "pages/product/product",
     "pages/orders/orders",
     "pages/user/user",
     "pages/list/list"
@@ -27,49 +26,7 @@
     "navigationBarTitleText": "首页",
     "navigationBarTextStyle": "black"
   },
-  "tabBar": {
-    "color": "#c3c3c3",
-    "selectedColor": "#343434",
-    "borderStyle": "white",
-    "backgroundColor": "#ffffff",
-    "list": [
-      {
-        "index": 0,
-        "pagePath": "pages/index/index",
-        "iconPath": "images/icons/home.png",
-        "selectedIconPath": "images/icons/home-active.png",
-        "text": "首页"
-      },
-      {
-        "index": 2,
-        "pagePath": "pages/user/user",
-        "iconPath": "images/icons/user.png",
-        "selectedIconPath": "images/icons/user-active.png",
-        "text": "讨论区"
-      },
-      {
-        "index": 3,
-        "pagePath": "pages/user/user",
-        "iconPath": "images/icons/user.png",
-        "selectedIconPath": "images/icons/user-active.png",
-        "text": "我的"
-      },
-      {
-        "index": 4,
-        "pagePath": "pages/addWorker/addWorker",
-        "iconPath": "images/icons/home.png",
-        "selectedIconPath": "images/icons/home-active.png",
-        "text": "添加信息"
-      },
-      {
-        "index": 5,
-        "pagePath": "pages/index2/index",
-        "iconPath": "images/icons/home.png",
-        "selectedIconPath": "images/icons/home-active.png",
-        "text": "demo"
-      }
-    ]
-  },
+  
   "usingComponents": {
     "l-icon": "style/dist/icon/index",
     "l-input": "style/dist/input/index",
@@ -80,12 +37,9 @@
     "l-avatar": "style/dist/avatar/index",
     "l-toast": "style/dist/toast/index",
     "l-message": "style/dist/message/index",
-    "l-loadmore": "style/dist/loadmore/index",
     "l-textarea": "style/dist/textarea/index",
     "l-button": "style/dist/button/index",
-    "l-image-picker": "style/dist/image-picker/index",
-    "l-segment": "style/dist/segment/index",
-    "l-segment-item": "style/dist/segment-item/index"
+    "l-image-picker": "style/dist/image-picker/index"
   },
   "sitemapLocation": "sitemap.json"
 }
