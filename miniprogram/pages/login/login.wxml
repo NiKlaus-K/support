@@ -1,0 +1,24 @@
+<view class="container">
+	<view class="top-wrap">
+		<image class="title" src="https://ftp.bmp.ovh/imgs/2019/09/74bada9c4143786a.png"></image>
+		<view class="content">
+			<view class="hd" style="transform:rotateZ({{angle}}deg);">
+				<image class="wave" src="../../images/bg/wave.png" mode="aspectFill"></image>
+				<image class="wave wave-bg" src="../../images/bg/wave.png" mode="aspectFill"></image>
+			</view>
+			<view class="bd" style="height: 100rpx;">
+			</view>
+		</view>
+	</view>
+	<view class="mid-wrap">
+		<view class="text">
+			<view>服务+态度</view>
+			<view>持续改进共同前行</view>
+		</view>
+		<view class="btns">
+			<button class="btn-login" wx:if="{{!isDisplay}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">点击登录</button>
+			<button class="btn-comment" wx:if="{{isDisplay}}" form-type="submit">我要评价</button>
+      <button class="btn-quit" wx:if="{{isDisplay}}" form-type="submit">我要退出</button>
+		</view>
+	</view>
+</view>

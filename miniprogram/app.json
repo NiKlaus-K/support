@@ -1,13 +1,12 @@
 {
   "pages": [
+    "pages/login/login",
+
     "pages/index/index",
     
     "pages/worker/worker",
-  "pages/addWorker/addWorker",
-    
+    "pages/addWorker/addWorker",
     "pages/index2/index",
-    
-  
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
     "pages/databaseGuide/databaseGuide",
@@ -23,10 +22,9 @@
     "backgroundColor": "#F3F3F3",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "首页",
+    "navigationBarTitleText": "",
     "navigationBarTextStyle": "black"
   },
-  
   "usingComponents": {
     "l-icon": "style/dist/icon/index",
     "l-input": "style/dist/input/index",
