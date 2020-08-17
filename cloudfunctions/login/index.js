@@ -5,13 +5,13 @@ const cloud = require('wx-server-sdk')
 
 // 初始化 cloud
 cloud.init({
-  env: 'support0535-e681d9'
+  env: 'support-v715d'
 })
 
-exports.main = (event, context) => {
+exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
-
+  console.log(wxContext)
   return {
-    openid: wxContext.OPENID
+    openid : wxContext.OPENID
   }
 }

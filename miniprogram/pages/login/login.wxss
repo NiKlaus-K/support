@@ -52,7 +52,7 @@ page {
   left: 50%;
   width: 600rpx;
   height: 200rpx;
-  margin-left: -300rpx;
+  margin-left: -228rpx;
   opacity: 0;
   animation: show 2.5s cubic-bezier(0.19, 1, 0.22, 1) .5s forwards;
 }
@@ -220,4 +220,12 @@ page {
   padding: 2px 12px;
   border-radius: 36px;
   border: 1px solid #ccc;
+}
+
+
+.admin-login {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  color: #ccc;
 }

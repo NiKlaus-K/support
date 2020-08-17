@@ -28,6 +28,8 @@ Page({
   },
 
   onLoad: function() {
+    // ===========================从缓存中获取用户数据=======================================
+    this.getUserInfo()
     // ===========================手动刷新完成后停止下拉刷新动效=======================================
     wx.stopPullDownRefresh()
     const db = wx.cloud.database()
@@ -124,6 +126,21 @@ Page({
   onClearSearch: function(){
     this.setData({
       isSearch: false
+    })
+  },
+  // 从缓存中获取用户数据
+  getUserInfo() {
+    let that = this
+    wx.getStorage({
+      key: 'userInfo',
+      success (res) {
+        that.setData({
+          userInfo: res.data
+        })
+      },
+      fail (err) {
+        console.log(err)
+      }
     })
   }
 })

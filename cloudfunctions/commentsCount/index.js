@@ -5,19 +5,13 @@ cloud.init()
 const db = cloud.database()
 // 云函数入口函数
 exports.main = async (event, context) => {
-  // const wxContext = cloud.getWXContext()
+  
   try {
     return await db.collection('comments')
       .where({
         workerId: event.workerId
       }).count()
   } catch(e){
-    console.error(e)
+    console.error('云函数【commentsCount】调用失败！', e)
   }
-  // return {
-  //   event,
-  //   openid: wxContext.OPENID,
-  //   appid: wxContext.APPID,
-  //   unionid: wxContext.UNIONID,
-  // }
 }

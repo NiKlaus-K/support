@@ -1,0 +1,17 @@
+[
+  {
+    "name": "userInfo",
+    "value": {
+      "userInfo": {
+        "nickName": "Noober",
+        "gender": 1,
+        "language": "zh_CN",
+        "city": "Yantai",
+        "province": "Shandong",
+        "country": "China",
+        "avatarUrl": "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLwM0DHVibwImqL7oHU3yQPjp1zGwViaKQekKkLiaAzhAr5Qvj5YFbcmklrBa14xpe9j4uzNPBunf5eQ/132",
+        "openid": "oiSDy5BiVhUg1RHUOTbXAW-YGd28"
+      }
+    }
+  }
+]

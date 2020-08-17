@@ -1,4 +1,5 @@
 const util = require('../../utils/util.js');
+const db = wx.cloud.database()
 
 // pages/worker/worker.js
 Page({
@@ -6,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isDisplay: true,
+    isShowLogin: true,
     userInfo: {},
     openid: ''
   },
@@ -17,51 +18,46 @@ Page({
   onLoad: function (options) {
     try {
       let userInfo = wx.getStorageSync('userInfo')
-      if (userInfo) {
-        if (userInfo.length > 1) {
-          this.setData({
-            userInfo: userInfo,
-            openid: userInfo.openid
-          })
-        } else {
-          // 获取用户信息
-          this.onGetUserInnfo();
-          // 获取用户openid
-          this.onGetUserOpenid();
-        }
+      // console.log("缓存中userInfo数据", userInfo)
+      if (userInfo && userInfo.openid) {
+        this.setData({
+          userInfo: userInfo,
+          openid: userInfo.openid,
+          isShowLogin: false
+        })
       } else {
         // 获取用户信息
-        this.onGetUserInnfo();
-        // 获取用户openid
-        this.onGetUserOpenid();
+        this.onGetUserInfo();
+        // 检查并更新数据库Users信息
+        this.addUser(this.data.userInfo)
       }
     } catch (e) {
-      console.log(e)
+      console.log("onLoad=======>failed", e)
     }
   },
-  // 获取用户信息
+  // 点击授权按钮，获取用户信息
   bindGetUserInfo: function (e) {
-    const that = this
+    let that = this
     wx.getUserInfo({
       success: function (res) {
         that.setData({
           userInfo: res.userInfo,
-          isDisplay: true
+          isShowLogin: false
         })
-        that.data.userInfo.openid = that.data.openid
-        wx.setStorageSync('userInfo', that.data.userInfo)
+        // 获取用户openid
+        that.onGetUserOpenid()
       }
     })
   },
-  onGetUserInnfo() {
+  onGetUserInfo() {
     // 查看是否授权
-    const that = this
+    let that = this
     wx.getSetting({
-      success(res) {
+      success: res => {
         if (res.authSetting['scope.userInfo'] === false) {
           // 未授权
           that.setData({
-            isDisplay: false
+            isShowLogin: true
           })
         } else if (res.authSetting['scope.userInfo'] === true) {
           // 已经授权
@@ -69,35 +65,73 @@ Page({
             success: function (res) {
               that.setData({
                 userInfo: res.userInfo,
-                isDisplay: true
+                isShowLogin: false
               })
-              that.data.userInfo.openid = that.data.openid
-              wx.setStorageSync('userInfo', that.data.userInfo)
+              // 获取用户openid
+              that.onGetUserOpenid()
             }
           })
         } else {
           // res.authSetting['scope.userInfo']不存在的时候
           that.setData({
-            isDisplay: false
+            isShowLogin: true
           })
         }
       }
     })
   },
   onGetUserOpenid() {
+    let that = this
     wx.cloud.callFunction({
       name: "login",
       success: res => {
         console.log("云函数【login】调用成功！", res);
-        this.setData({
-          openid: res.result.openid
-        })
-        this.data.userInfo.openid = this.data.openid
-        wx.setStorageSync('userInfo', this.data.userInfo)
+        if (res.result && res.result.openid) {
+          that.setData({
+            openid: res.result.openid
+          })
+          that.data.userInfo.openid = that.data.openid
+          wx.setStorageSync('userInfo', that.data.userInfo)
+          that.addUser(that.data.userInfo)
+        } else {
+          // 重新登录
+          that.setData({
+            isShowLogin: false
+          })
+        }
       },
       fail: err => {
         console.log("云函数【login】调用失败！", err)
       }
+    })
+  },
+  addUser(userInfo) {
+    if(userInfo.openid) {
+      wx.cloud.callFunction({
+        name: "addUser",
+        data:{
+          userInfo: userInfo
+        },
+        success: res => {
+          console.log("云函数【addUser】调用成功！", res);
+        },
+        fail: err => {
+          console.log("云函数【addUser】调用失败！", err)
+        }
+      })
+    }
+  },
+  addUserAccount() {
+    console.log("addUserAccount")
+  },
+  adminLogin() {
+    wx.navigateTo({
+      url: '../index/index'
+    })
+  },
+  goComment() {
+    wx.navigateTo({
+      url: '../userComment/userComment'
     })
   }
 })

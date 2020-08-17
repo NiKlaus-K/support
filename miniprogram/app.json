@@ -1,9 +1,7 @@
 {
   "pages": [
     "pages/login/login",
-
     "pages/index/index",
-    
     "pages/worker/worker",
     "pages/addWorker/addWorker",
     "pages/index2/index",
@@ -16,7 +14,8 @@
     "pages/openapi/openapi",
     "pages/orders/orders",
     "pages/user/user",
-    "pages/list/list"
+    "pages/list/list",
+    "pages/userComment/userComment"
   ],
   "window": {
     "backgroundColor": "#F3F3F3",

@@ -2,8 +2,10 @@
 const cloud = require('wx-server-sdk')
 
 cloud.init()
+
 const db = cloud.database()
 const $ = db.command.aggregate
+
 // 云函数入口函数
 exports.main = async (event, context) => {
   try {
@@ -15,6 +17,6 @@ exports.main = async (event, context) => {
       })
       .end()
   } catch (e) {
-    console.error(e)
+    console.error('云函数【getAvgSroce】调用失败！', e)
   }
 }
