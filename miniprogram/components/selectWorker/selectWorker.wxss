@@ -1,0 +1,72 @@
+/* components/selectWorker.wxss */
+.picker {
+  width: 100%;
+  color: #9a9a9a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.picker::after {
+  content: '';
+  display: inline-block;
+  width: 12rpx;
+  height: 12rpx;
+  border-color: #000;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+  transform: rotate(-45deg);
+  margin-right: 10rpx;
+}
+
+/* popup员工选择弹出窗样式 */
+.popup-wrap {
+  height: 800rpx;
+  width: 500rpx;
+  background-color: #fff;
+  padding: 40rpx;
+  border-radius: 20rpx;
+}
+.popup-title {
+  font-size: 12pt;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+.popup-title-text {
+  flex: 1;
+  font-weight: 500;
+}
+
+.popup-title-close-image {
+  width: 36rpx;
+  height: 36rpx;
+  display: block;
+}
+
+.popup-content-search {
+  width: 100%;
+  height: 60rpx;
+}
+
+.popup-content-search-input {
+  border-bottom: 1px solid #ccc;
+  padding: 0 16rpx 6rpx 16rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+}
+
+.popup-content-list {
+  width: 100%;
+  height: 650rpx;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.popup-content-list-item {
+  width: 100%;
+  height: 40rpx;
+  line-height: 40rpx;
+  margin: 20rpx 0 20rpx 20rpx;
+}

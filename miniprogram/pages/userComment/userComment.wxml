@@ -1,4 +1,31 @@
 <!--miniprogram/pages/userComment.wxml-->
 <view class="container">
-  123
+	<view class="form">
+		<view class="form-item form-item-nowrap form-item-bt-border">
+			<view class="form-item-label">员工：</view>
+			<select-worker style="width:100%;" name="{{comment.worker ? comment.worker.name : ''}}" bind:updateSelect="updateWorker" ></select-worker>
+		</view>
+		<view class="form-item">
+			<view class="form-item-label form-item-label-wrap">评价：</view>
+			<l-textarea id="content" l-class="form-item-comment" placeholder="点击评价..." auto-height="{{true}}" border="{{true}}" indicator="{{true}}" name="content" value="{{comment.content}}" bind:linchange="updateContent"/>
+		</view>
+		<view class="form-item form-item-nowrap form-item-bt-border">
+			<view class="form-item-label">打分：</view>
+			<l-rate id="score" size="38" score="{{comment.score}}" bind:linChange="updateScore" />
+		</view>
+		<view class="form-item form-item-bt-border">
+			<l-input label="姓名："  placeholder="请输入姓名" clear id="name" value="{{comment.name}}" bind:linchange="updateName"/>
+		</view>
+		<view class="form-item form-item-bt-border">
+			<l-input label="联系方式："  placeholder="请输入联系方式" clear id="address" value="{{comment.phone}}"  bind:linchange="updatePhone"/>
+		</view>
+	</view>
+	<view class="btn">
+		<view class="btn-submit">
+			<l-button type="default" bind:lintap="submit">提交</l-button>
+		</view>
+		<view class="btn-reset">
+			<l-button type="default" plain  bind:lintap="reset">重置</l-button>
+		</view>
+	</view>
 </view>

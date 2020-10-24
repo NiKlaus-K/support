@@ -1,6 +1,9 @@
 {
   "pages": [
     "pages/login/login",
+    "pages/userComment/userComment",
+
+    
     "pages/index/index",
     "pages/worker/worker",
     "pages/addWorker/addWorker",
@@ -14,8 +17,7 @@
     "pages/openapi/openapi",
     "pages/orders/orders",
     "pages/user/user",
-    "pages/list/list",
-    "pages/userComment/userComment"
+    "pages/list/list"
   ],
   "window": {
     "backgroundColor": "#F3F3F3",
@@ -28,7 +30,6 @@
     "l-icon": "style/dist/icon/index",
     "l-input": "style/dist/input/index",
     "l-search-bar": "style/dist/search-bar/index",
-    "l-card": "style/dist/card/index",
     "l-tag": "style/dist/tag/index",
     "l-list": "style/dist/list/index",
     "l-avatar": "style/dist/avatar/index",
@@ -36,7 +37,12 @@
     "l-message": "style/dist/message/index",
     "l-textarea": "style/dist/textarea/index",
     "l-button": "style/dist/button/index",
-    "l-image-picker": "style/dist/image-picker/index"
+    "l-image-picker": "style/dist/image-picker/index",
+    "l-checkbox": "style/dist/checkbox/index",
+    "l-radio": "style/dist/radio/index",
+    "l-rate": "style/dist/rate/index",
+    "l-notice-bar": "style/dist/notice-bar/index",
+    "l-popup": "style/dist/popup/index"
   },
   "sitemapLocation": "sitemap.json"
 }

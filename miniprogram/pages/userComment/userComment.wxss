@@ -1,1 +1,48 @@
 /* miniprogram/pages/userComment.wxss */
+page {
+  background-color: #ffffff;
+}
+.form {
+  margin: 10rpx;
+}
+.form-item {
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+  /* border: 1px solid rgb(0, 255, 255); */
+}
+
+.form-item-nowrap {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.form-item-bt-border {
+  border-bottom: 2rpx solid #f3f3f3;
+}
+
+.form-item-label, .form-item-label-wrap {
+  width: 200rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 88rpx;
+  padding-left: 25rpx;
+  padding-right: 15rpx;
+  box-sizing: border-box;
+}
+
+.form-item-label-wrap {
+  margin-bottom: -25rpx;
+}
+
+.form-item-comment {
+  padding: 20rpx;
+}
+
+.btn{
+  display: flex;
+  justify-content: space-around;
+  margin: 80rpx;
+}

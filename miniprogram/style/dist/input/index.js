@@ -118,7 +118,6 @@ Component({
       this.setData({
         value
       });
-
       this.triggerEvent('linchange', event);
     },
 

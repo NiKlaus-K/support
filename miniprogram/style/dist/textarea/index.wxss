@@ -22,7 +22,7 @@
 
 .textarea {
   width: 100%;
-  padding: 20rpx 20rpx 10rpx 20rpx;
+  padding: 20rpx 20rpx 0 20rpx;
   box-sizing: border-box;
   font-size: 28rpx;
   color: #333;

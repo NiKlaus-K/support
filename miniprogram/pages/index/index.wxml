@@ -24,22 +24,15 @@
     <view wx:for="{{isSearch?searchWorkers:workers}}" wx:key="_id">
       <!-- 设置路由，打开worker页面  暂时使用 存在点击时padding区域也变色的问题-->
       <!-- hover-class="none "取消点击样式 -->
-      <view data-id="{{item._id}}" bindtap="click">
-        <l-card type="avatar" l-class="card" image="{{item.photo}}" title="{{item.name}}" describe="区域：{{item.area}}">
-          <!-- 此处为content -->
-          <view class="avter-content">
-            {{ item.introduce}}
+      <view class="card" data-id="{{item._id}}" bindtap="click">
+        <view class="card-title">
+          <view class="card-title-name">{{item.name}}</view>
+          <view class="card-title-comment">
+            <p>评价：14</p>
+				    <p>评分：5.0</p>
           </view>
-          <!-- <view class="avter-share-container">
-            <view class="like-container">
-              <l-icon name="comment" color="#666" size="26" />
-              <view class="number">{{item.comment_num}} 评论</view>
-            </view>
-          </view> -->
-          <l-tag shape="circle" bg-color="#f3f3f3" font-color="#3963BC" slot="more" size="large">
-            联系电话：{{ item.mobile }}
-          </l-tag>
-        </l-card>
+        </view>
+        <view class="card-describe">{{item.name}}</view>
       </view>
     </view>
   </view>

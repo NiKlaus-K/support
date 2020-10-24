@@ -125,4 +125,5 @@
 .describe {
   color: #666;
   font-size: 24rpx;
+  margin-top: 2rpx;
 }

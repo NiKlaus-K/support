@@ -149,15 +149,14 @@ Page({
   getCommentList() {
     const db = wx.cloud.database()
     // 查询当前用户所有的评论
+    let i = 'worker._id'
     db.collection('comments').where({
-      workerId: this.data.workerId
+      [i]: this.data.workerId
     }).orderBy('createDate', 'desc').get({
       success: res => {
         this.setData({
           'comments': res.data
         });
-
-        // console.log(workerId)
         console.log('[comments] [查询全部评论] 成功: ', res.data)
       },
       fail: err => {

@@ -37,7 +37,7 @@
 	</view>
 	<view class="divBlank"></view>
 	<!-- ===========================提交评论区域========================================== -->
-	<view class="worker-comment-add">
+	<view class="worker-comment-add" wx:if="{{false}}">
 		<form bindsubmit="commentSubmit" class="comment-form">
 			<l-textarea l-class="worker-comment-textarea" placeholder="点击评价..." auto-height="{{true}}" border="{{true}}" indicator="{{true}}" name="commentContent" value="{{commentContent}}" />
 			<view class="worker-comment-add-btn">
@@ -50,12 +50,9 @@
 		</form>
 	</view>
 	<!-- ===========================分割线========================================== -->
-	<view class="divBlank"></view>
+	<view class="divBlank" wx:if="{{false}}"></view>
+			<!-- ===========================评论列表区域========================================== -->
 	<view class="worker-comment">
-		<!-- ===========================评论列表区域========================================== -->
-
-
-		<!-- ===========================评论列表区域========================================== -->
 		<view class="comment-list">
 			<view class="comment-title">
 				<view class="comment-title-part1">全部评价</view>
@@ -65,11 +62,11 @@
 			<view class="comment-item" wx:for="{{comments}}" wx:key="_id" wx:for-item="item" data-id="{{item._id}}">
 				<view class="comment-item-title">
 					<view class="comment-item-title-part1">
-						<l-avatar src="{{item.commentatorAvatar?item.commentatorAvatar:avatarNone}}" mode="aspectFit" size="80" />
+						<l-avatar src="{{item.commentator?item.commentator.avatarUrl:avatarNone}}" mode="aspectFit" size="80" />
 					</view>
 					<view class="comment-item-title-part2">
 						<view class="comment-item-title-part2-top">
-							<view class="comment-name">{{ item.commentatorNickName }}</view>
+							<view class="comment-name">{{ item.commentator ? item.commentator.nickName:''}}</view>
 							<view class="comment-date">{{ item.date }}</view>
 						</view>
 						<view class="comment-item-part2-score">
@@ -77,7 +74,7 @@
 						</view>
 					</view>
 				</view>
-				<view class="comment-content">{{ item.commentContent }}</view>
+				<view class="comment-content">{{ item.content }}</view>
 
 
 				<!-- ===========================评论回复区域========================================== -->
