@@ -1,10 +1,12 @@
 {
   "pages": [
     "pages/login/login",
+    "pages/index/index",
+
+    
     "pages/userComment/userComment",
 
     
-    "pages/index/index",
     "pages/worker/worker",
     "pages/addWorker/addWorker",
     "pages/index2/index",
@@ -42,7 +44,10 @@
     "l-radio": "style/dist/radio/index",
     "l-rate": "style/dist/rate/index",
     "l-notice-bar": "style/dist/notice-bar/index",
-    "l-popup": "style/dist/popup/index"
+    "l-popup": "style/dist/popup/index",
+    "l-loading": "style/dist/loading/index",
+    "l-status-show": "style/dist/status-show/index",
+    "l-dialog": "style/dist/dialog/index"
   },
   "sitemapLocation": "sitemap.json"
 }

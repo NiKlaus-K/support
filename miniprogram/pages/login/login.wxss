@@ -193,7 +193,7 @@ page {
   background: #3963bc;
   color: #fff;
   letter-spacing: 2px;
-  font-size: 12px;
+  font-size: 28rpx;
   padding: 2px 12px;
   border-radius: 36px;
   border: 1px solid #fff;
@@ -204,7 +204,7 @@ page {
   background: #3963bc;
   color: #fff;
   letter-spacing: 2px;
-  font-size: 12px;
+  font-size: 28rpx;
   padding: 2px 12px;
   border-radius: 36px;
   border: 1px solid #fff;
@@ -216,10 +216,20 @@ page {
   background: #fff;
   color: #d4d4d4;
   letter-spacing: 2px;
-  font-size: 12px;
+  font-size: 28rpx;
   padding: 2px 12px;
   border-radius: 36px;
   border: 1px solid #ccc;
+}
+
+.btn-comment::after {
+  border-radius: 96rpx;
+  border: 0;
+}
+
+.btn-quit::after {
+  border-radius: 96rpx;
+  border: 0;
 }
 
 

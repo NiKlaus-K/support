@@ -31,6 +31,15 @@ Page({
     this.setData({
       'workerId': options.id //（接受url传参，不限制只能传递id变量名，可以传递多个变量名值）
     })
+    // this.onLoadGetUser();
+    // 获取工作人员信息
+    this.getWorkerInfo();
+    // 获取评论列表
+    this.getCommentList();
+    // 获取评论数
+    this.getCommentCount();
+  },
+  onLoadGetUser: function() {
     try {
       let userInfo = wx.getStorageSync('userInfo')
       if (userInfo) {
@@ -54,12 +63,6 @@ Page({
     } catch (e) {
       console.log(e)
     }
-    // 获取工作人员信息
-    this.getWorkerInfo();
-    // 获取评论列表
-    this.getCommentList();
-    // 获取评论数
-    this.getCommentCount();
   },
   // 获取用户信息
   bindGetUserInfo: function (e) {
@@ -149,9 +152,8 @@ Page({
   getCommentList() {
     const db = wx.cloud.database()
     // 查询当前用户所有的评论
-    let i = 'worker._id'
     db.collection('comments').where({
-      [i]: this.data.workerId
+      workerId: this.data.workerId
     }).orderBy('createDate', 'desc').get({
       success: res => {
         this.setData({

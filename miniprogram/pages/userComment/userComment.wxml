@@ -1,6 +1,6 @@
 <!--miniprogram/pages/userComment.wxml-->
 <view class="container">
-	<view class="form">
+	<view class="form" wx:if="{{!isFinshed}}">
 		<view class="form-item form-item-nowrap form-item-bt-border">
 			<view class="form-item-label">员工：</view>
 			<select-worker style="width:100%;" name="{{comment.worker ? comment.worker.name : ''}}" bind:updateSelect="updateWorker" ></select-worker>
@@ -20,7 +20,7 @@
 			<l-input label="联系方式："  placeholder="请输入联系方式" clear id="address" value="{{comment.phone}}"  bind:linchange="updatePhone"/>
 		</view>
 	</view>
-	<view class="btn">
+	<view class="btn" wx:if="{{!isFinshed}}">
 		<view class="btn-submit">
 			<l-button type="default" bind:lintap="submit">提交</l-button>
 		</view>
@@ -28,4 +28,7 @@
 			<l-button type="default" plain  bind:lintap="reset">重置</l-button>
 		</view>
 	</view>
+	<l-message />
+	<l-dialog />
+	<l-status-show show="{{isFinshed}}" describe="感谢您宝贵的评价~" button-text="退出" bind:lintap="exit"></l-status-show>
 </view>

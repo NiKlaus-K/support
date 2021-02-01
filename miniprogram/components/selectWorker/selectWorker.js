@@ -17,13 +17,15 @@ Component({
     selected: {},
     workerList: [],
     workerListBySearch: [],
-    isShowPopup: false
+    isShowPopup: false,
+    isLoading: true
   },
   /**
    * 组件的方法列表
    */
   methods: {
     getWorkerList: async function() {
+      this.isLoading = true
       const { result } = await wx.cloud.callFunction({
         name: 'worker',
         data: {
@@ -32,7 +34,8 @@ Component({
       })
       this.setData({
         workerList: result,
-        workerListBySearch: result
+        workerListBySearch: result,
+        isLoading: false
       })
     },
     openWorkerList: function () {

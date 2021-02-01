@@ -35,7 +35,7 @@
       <l-button type="default" l-class="claer" plain="true">清除</l-button>
     </view> -->
     <view class="btn bot-wrap">
-      <button class="weui-btn" type="primary" formType="submit">保存</button>
+      <button class="weui-btn" formType="submit">保存</button>
     </view>
   </form>
 </view>
