@@ -2,7 +2,10 @@
 const cloud = require('wx-server-sdk')
 
 // 初始化 cloud
-cloud.init()
+cloud.init({
+  env: 'support-v715d',
+  traceUser: true,
+})
 
 exports.main = (event, context) => {
   console.log("event:", event)

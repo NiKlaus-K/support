@@ -2,12 +2,9 @@
 <view class="container">
 	<!-- ===========================工作人员基本信息区域========================================== -->
 	<view class="worker-container">
-		<!--确认框 -->
-		<l-dialog show="{{true}}" type="confirm" title="标题" content="这个是确认框" />
-		<view wx:if="{{!openid}}">
+		<!-- <view wx:if="{{!openid}}">
 			<button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo"></button>
-
-		</view>
+		</view> -->
 
 		<image class="worker-photo" src="{{ worker.photo }}"></image>
 		<view class="worker-info">

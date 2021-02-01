@@ -1,7 +1,10 @@
 // 云函数入口文件
 const cloud = require('wx-server-sdk')
 
-cloud.init()
+cloud.init({
+  env: 'support-v715d',
+  traceUser: true,
+})
 
 const db = cloud.database()
 const $ = db.command.aggregate

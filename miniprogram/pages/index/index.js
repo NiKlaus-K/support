@@ -79,6 +79,12 @@ Page({
       url: '../worker/worker?title=worker&id=' + workerId
     })
   },
+  add:function() {
+    console.log("add==========>")
+    wx.navigateTo({
+      url: '../addWorker/addWorker'
+    })
+  },
   // =================================添加下拉刷新（钩子函数）=================================
   onPullDownRefresh() {
     //var that = this;

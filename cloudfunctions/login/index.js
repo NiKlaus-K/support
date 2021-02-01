@@ -5,7 +5,8 @@ const cloud = require('wx-server-sdk')
 
 // 初始化 cloud
 cloud.init({
-  env: 'support-v715d'
+  env: 'support-v715d',
+  traceUser: true,
 })
 
 exports.main = async (event, context) => {

@@ -2,7 +2,8 @@
 const cloud = require('wx-server-sdk')
 
 cloud.init({
-  env: 'support-v715d'
+  env: 'support-v715d',
+  traceUser: true,
 })
 
 const db = cloud.database().collection('users')

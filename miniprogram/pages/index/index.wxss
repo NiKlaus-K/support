@@ -63,6 +63,28 @@
 .slide-image {
   width: 100%;
 }
+
+/* ================排序工具列表================ */
+.tool-wrap {
+  width: 80rpx;
+  height: 80rpx;
+  position: fixed;
+  bottom: 60rpx;
+  right: 50rpx;
+}
+
+.add-wrap {
+  width: 80rpx;
+  height: 80rpx;
+  background: #2c2f33;
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 46rpx;
+  line-height: 75rpx;
+}
+
+
 /* ================卡片列表区域================ */
 /* 设置卡片列表 下边距 */
 .card{

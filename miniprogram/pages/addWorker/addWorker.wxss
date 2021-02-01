@@ -17,7 +17,7 @@ page {
   padding: 30rpx;
 }
 
-.top-wrap,.mid-wrap,.bot-wrap{
+.top-wrap,.mid-wrap{
   background: #fff;
   border-radius: 20rpx;
   margin: 0 0 20rpx;
@@ -65,7 +65,7 @@ page {
 
 .btn{
   text-align: center;
-  margin: 20rpx  20rpx;
+  margin: 40rpx 20rpx 20rpx;
 } 
 
 .introduce-text{
@@ -82,4 +82,16 @@ page {
 .introduce-value{
   border-radius: 10rpx;
   padding: 15rpx 40rpx 30rpx 40rpx;
+}
+
+/* 保存按钮颜色 */
+.weui-btn {
+  background-color: #3963bc;
+  color: #fff;
+  border-radius: 96rpx;
+}
+
+.weui-btn::after {
+  border-radius: 98rpx;
+  border: 0; 
 }

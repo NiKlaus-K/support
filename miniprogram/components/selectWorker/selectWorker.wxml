@@ -1,6 +1,6 @@
 <!--components/selectWorker.wxml-->
 <view>
-	<input class="picker" placeholder="请选择员工" bindtap="openWorkerList" value="{{name ? name : ''}}" />
+	<input class="picker" placeholder="请选择员工" bindtap="openWorkerList" value="{{name ? name : ''}}" disabled/>
 	<!-- bindblur="handleInputBlur" -->
   <l-popup show="{{isShowPopup}}">
 		<view class="popup-wrap">
@@ -9,14 +9,18 @@
 					请选择要评价的员工
 				</view>
 				<view class="popup-title-close">
-					<image class="popup-title-close-image" src="../../images/icons/close.png" bindtap="closeWorkerList"></image>
+					<!-- <image class="popup-title-close-image" src="../../images/icons/close.png" bindtap="closeWorkerList"></image> -->
+					<l-icon name="close" size="32" bindtap="closeWorkerList"/>
 				</view>
 			</view>
 			<view class="popup-content">
 				<view class="popup-content-search">
 					<input class="popup-content-search-input" placeholder="请输入关键字" bindinput="searchWorker" />
 				</view>
-				<view class="popup-content-list">
+				<view class="loading-wrap" wx:if="{{isLoading}}">
+					<l-loading show="{{isLoading}}" type="circle"></l-loading>
+				</view>
+				<view class="popup-content-list" wx:if="{{!isLoading}}">
 					<view class="popup-content-list-item" wx:for="{{workerListBySearch}}" wx:key="_id" data-id="{{item._id}}" bindtap="clickWorker">
 						<view class="popup-content-list-item-body">
 							<view class="popup-content-list-item-body-name">
