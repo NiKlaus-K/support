@@ -107,6 +107,8 @@
   background-color: #f3f3f3;
   border-radius: 30rpx;
   padding:6rpx 20rpx;
+  display: flex;
+  align-items: center;
 }
 
 .card-title-comment p:first-child{

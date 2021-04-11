@@ -10,7 +10,7 @@
       </l-search-bar>
     </view>
     <!-- swiper区域 -->
-    <view class="swiper">
+    <!-- <view class="swiper">
       <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class="swiper-home" circular="{{true}}" easing-function="default">
         <block wx:for="{{imgUrls}}" wx:key="*this">
           <swiper-item>
@@ -18,7 +18,7 @@
           </swiper-item>
         </block>
       </swiper>
-    </view>
+    </view> -->
     <view class="tool-wrap">
       <view class="add-wrap" bindtap="add">+</view>
     </view>
